@@ -50,5 +50,16 @@ test
 prompt
 
 server.log
-# Skills directory
+
+# Dev-only directories — not needed for production deploy
 /skills/
+/examples/
+/mini-services/
+/scripts/
+/download/
+/upload/
+
+# Z.ai sandbox internals
+.zscripts/
+.z-ai-config
+.claude

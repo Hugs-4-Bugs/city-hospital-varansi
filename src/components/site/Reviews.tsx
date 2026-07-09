@@ -6,6 +6,7 @@ import {
   useMotionValue,
   useAnimationFrame,
   useInView,
+  animate,
 } from "framer-motion";
 import {
   Star,
@@ -115,7 +116,11 @@ export default function Reviews() {
       constraints.left,
       Math.min(0, x.get() - dir * amount)
     );
-    x.set(target, { duration: 0.6, ease: [0.22, 1, 0.36, 1] });
+    const controls = animate(x, target, {
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1],
+    });
+    return () => controls.stop();
   };
 
   return (

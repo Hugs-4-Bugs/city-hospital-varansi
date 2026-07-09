@@ -1,0 +1,951 @@
+     1→23:45:17.281 Running build in Washington, D.C., USA (East) – iad1
+     2→23:45:17.285 Build machine configuration: 2 cores, 8 GB
+     3→23:45:17.812 Cloning github.com/Hugs-4-Bugs/city-hospital-varansi (Branch: main, Commit: 09d086b)
+     4→23:45:17.818 Previous build caches not available.
+     5→23:45:19.128 Cloning completed: 1.312s
+     6→23:45:20.950 Running "vercel build"
+     7→23:45:20.972 Vercel CLI 54.21.1
+     8→23:45:21.633 Running "install" command: `bun install`...
+     9→23:45:21.691 bun install v1.3.12 (700fc117)
+    10→23:45:43.450 
+    11→23:45:43.450 $ prisma generate
+    12→23:45:44.513 Prisma schema loaded from prisma/schema.prisma
+    13→23:45:47.204 ┌─────────────────────────────────────────────────────────┐
+    14→23:45:47.205 │  Update available 6.19.2 -> 7.8.0                       │
+    15→23:45:47.206 │                                                         │
+    16→23:45:47.206 │  This is a major update - please follow the guide at    │
+    17→23:45:47.206 │  https://pris.ly/d/major-version-upgrade                │
+    18→23:45:47.206 │                                                         │
+    19→23:45:47.206 │  Run the following to update                            │
+    20→23:45:47.207 │    npm i --save-dev prisma@latest                       │
+    21→23:45:47.207 │    npm i @prisma/client@latest                          │
+    22→23:45:47.207 └─────────────────────────────────────────────────────────┘
+    23→23:45:47.207 
+    24→23:45:47.208 ✔ Generated Prisma Client (v6.19.2) to ./node_modules/@prisma/client in 1.65s
+    25→23:45:47.208 
+    26→23:45:47.208 Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+    27→23:45:47.208 
+    28→23:45:47.209 Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+    29→23:45:47.209 
+    30→23:45:47.237 
+    31→23:45:47.238 + @tailwindcss/postcss@4.1.18
+    32→23:45:47.238 + @testing-library/jest-dom@6.9.1
+    33→23:45:47.238 + @testing-library/react@16.3.2
+    34→23:45:47.238 + @testing-library/user-event@14.6.1
+    35→23:45:47.238 + @types/bcryptjs@3.0.0
+    36→23:45:47.239 + @types/dompurify@3.2.0
+    37→23:45:47.239 + @types/jsonwebtoken@9.0.10
+    38→23:45:47.239 + @types/nodemailer@8.0.0
+    39→23:45:47.239 + @types/react@19.2.8
+    40→23:45:47.239 + @types/react-dom@19.2.3
+    41→23:45:47.239 + @vitejs/plugin-react@6.0.2
+    42→23:45:47.239 + @vitest/coverage-v8@4.1.6
+    43→23:45:47.239 + bun-types@1.3.6
+    44→23:45:47.239 + dompurify@3.4.5
+    45→23:45:47.240 + eslint@9.39.2
+    46→23:45:47.240 + eslint-config-next@16.1.3
+    47→23:45:47.240 + jsdom@29.1.1
+    48→23:45:47.240 + msw@2.14.6
+    49→23:45:47.240 + tailwindcss@4.1.18
+    50→23:45:47.240 + tw-animate-css@1.4.0
+    51→23:45:47.240 + typescript@5.9.3
+    52→23:45:47.240 + vitest@4.1.6
+    53→23:45:47.240 + @dnd-kit/core@6.3.1
+    54→23:45:47.240 + @dnd-kit/sortable@10.0.0
+    55→23:45:47.240 + @dnd-kit/utilities@3.2.2
+    56→23:45:47.240 + @hookform/resolvers@5.2.2
+    57→23:45:47.240 + @mdxeditor/editor@3.52.3
+    58→23:45:47.240 + @prisma/client@6.19.2
+    59→23:45:47.240 + @radix-ui/react-accordion@1.2.12
+    60→23:45:47.240 + @radix-ui/react-alert-dialog@1.1.15
+    61→23:45:47.240 + @radix-ui/react-aspect-ratio@1.1.8
+    62→23:45:47.240 + @radix-ui/react-avatar@1.1.11
+    63→23:45:47.241 + @radix-ui/react-checkbox@1.3.3
+    64→23:45:47.241 + @radix-ui/react-collapsible@1.1.12
+    65→23:45:47.241 + @radix-ui/react-context-menu@2.2.16
+    66→23:45:47.241 + @radix-ui/react-dialog@1.1.15
+    67→23:45:47.241 + @radix-ui/react-dropdown-menu@2.1.16
+    68→23:45:47.241 + @radix-ui/react-hover-card@1.1.15
+    69→23:45:47.241 + @radix-ui/react-label@2.1.8
+    70→23:45:47.241 + @radix-ui/react-menubar@1.1.16
+    71→23:45:47.241 + @radix-ui/react-navigation-menu@1.2.14
+    72→23:45:47.245 + @radix-ui/react-popover@1.1.15
+    73→23:45:47.246 + @radix-ui/react-progress@1.1.8
+    74→23:45:47.246 + @radix-ui/react-radio-group@1.3.8
+    75→23:45:47.246 + @radix-ui/react-scroll-area@1.2.10
+    76→23:45:47.246 + @radix-ui/react-select@2.2.6
+    77→23:45:47.246 + @radix-ui/react-separator@1.1.8
+    78→23:45:47.246 + @radix-ui/react-slider@1.3.6
+    79→23:45:47.246 + @radix-ui/react-slot@1.2.4
+    80→23:45:47.246 + @radix-ui/react-switch@1.2.6
+    81→23:45:47.246 + @radix-ui/react-tabs@1.1.13
+    82→23:45:47.246 + @radix-ui/react-toast@1.2.15
+    83→23:45:47.246 + @radix-ui/react-toggle@1.1.10
+    84→23:45:47.246 + @radix-ui/react-toggle-group@1.1.11
+    85→23:45:47.246 + @radix-ui/react-tooltip@1.2.8
+    86→23:45:47.246 + @reactuses/core@6.1.9
+    87→23:45:47.246 + @tanstack/react-query@5.90.19
+    88→23:45:47.246 + @tanstack/react-table@8.21.3
+    89→23:45:47.246 + bcryptjs@3.0.3
+    90→23:45:47.246 + cheerio@1.2.0
+    91→23:45:47.247 + class-variance-authority@0.7.1
+    92→23:45:47.247 + clsx@2.1.1
+    93→23:45:47.247 + cmdk@1.1.1
+    94→23:45:47.247 + date-fns@4.1.0
+    95→23:45:47.247 + embla-carousel-react@8.6.0
+    96→23:45:47.247 + framer-motion@12.26.2
+    97→23:45:47.247 + input-otp@1.4.2
+    98→23:45:47.247 + ioredis@5.10.1
+    99→23:45:47.247 + jose@6.2.3
+   100→23:45:47.247 + jsonwebtoken@9.0.3
+   101→23:45:47.247 + lucide-react@0.525.0
+   102→23:45:47.247 + next@16.1.3
+   103→23:45:47.247 + next-auth@4.24.13
+   104→23:45:47.247 + next-intl@4.7.0
+   105→23:45:47.247 + next-themes@0.4.6
+   106→23:45:47.247 + nodemailer@8.0.7
+   107→23:45:47.247 + pdfkit@0.18.0
+   108→23:45:47.248 + prisma@6.19.2
+   109→23:45:47.248 + razorpay@2.9.6
+   110→23:45:47.248 + react@19.2.3
+   111→23:45:47.248 + react-day-picker@9.13.0
+   112→23:45:47.248 + react-dom@19.2.3
+   113→23:45:47.248 + react-hook-form@7.71.1
+   114→23:45:47.248 + react-markdown@10.1.0
+   115→23:45:47.248 + react-resizable-panels@3.0.6
+   116→23:45:47.248 + react-syntax-highlighter@15.6.6
+   117→23:45:47.248 + recharts@2.15.4
+   118→23:45:47.248 + resend@6.12.3
+   119→23:45:47.248 + sharp@0.34.5
+   120→23:45:47.248 + sonner@2.0.7
+   121→23:45:47.248 + stripe@22.1.1
+   122→23:45:47.248 + tailwind-merge@3.4.0
+   123→23:45:47.248 + tailwindcss-animate@1.0.7
+   124→23:45:47.248 + uuid@11.1.0
+   125→23:45:47.248 + vaul@1.1.2
+   126→23:45:47.250 + z-ai-web-dev-sdk@0.0.18
+   127→23:45:47.251 + zod@4.3.5
+   128→23:45:47.251 + zustand@5.0.10
+   129→23:45:47.251 
+   130→23:45:47.251 1060 packages installed [25.56s]
+   131→23:45:47.273 Detected Next.js version: 16.1.3
+   132→23:45:47.274 Running "bun run vercel-build"
+   133→23:45:47.280 $ prisma generate && next build
+   134→23:45:48.308 Prisma schema loaded from prisma/schema.prisma
+   135→23:45:49.633 
+   136→23:45:49.633 ✔ Generated Prisma Client (v6.19.2) to ./node_modules/@prisma/client in 666ms
+   137→23:45:49.634 
+   138→23:45:49.634 Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+   139→23:45:49.634 
+   140→23:45:49.635 Tip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate
+   141→23:45:49.635 
+   142→23:45:50.443 Attention: Next.js now collects completely anonymous telemetry regarding usage.
+   143→23:45:50.443 This information is used to shape Next.js' roadmap and prioritize features.
+   144→23:45:50.444 You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+   145→23:45:50.444 https://nextjs.org/telemetry
+   146→23:45:50.444 
+   147→23:45:50.458 ▲ Next.js 16.1.3 (Turbopack)
+   148→23:45:50.459 - Experiments (use with caution):
+   149→23:45:50.459   · optimizePackageImports
+   150→23:45:50.460 
+   151→23:45:50.534   Creating an optimized production build ...
+   152→23:46:03.716 Turbopack build encountered 17 warnings:
+   153→23:46:03.717 ./src/app/api/auth/security/lock-status/route.ts:18:39
+   154→23:46:03.717 Module not found: Can't resolve '@/lib/account-lock-service'
+   155→23:46:03.717   16 |   return withAuth(request, async (user: AuthUser) => {
+   156→23:46:03.717   17 |     try {
+   157→23:46:03.717 > 18 |       const { getLockStatus } = await import('@/lib/account-lock-service');
+   158→23:46:03.717      |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   159→23:46:03.717   19 |       const status = await getLockStatus(user.id);
+   160→23:46:03.717   20 |
+   161→23:46:03.717   21 |       return NextResponse.json({
+   162→23:46:03.717 
+   163→23:46:03.718 Import map: aliased to relative './src/lib/account-lock-service' inside of [project]/
+   164→23:46:03.718 
+   165→23:46:03.718 
+   166→23:46:03.718 https://nextjs.org/docs/messages/module-not-found
+   167→23:46:03.718 
+   168→23:46:03.718 
+   169→23:46:03.718 ./src/app/api/auth/security/lock-status/route.ts:64:43
+   170→23:46:03.718 Module not found: Can't resolve '@/lib/account-lock-service'
+   171→23:46:03.718   62 |       switch (action) {
+   172→23:46:03.718   63 |         case 'request_unlock': {
+   173→23:46:03.718 > 64 |           const { getLockStatus } = await import('@/lib/account-lock-service');
+   174→23:46:03.718      |                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   175→23:46:03.718   65 |           const status = await getLockStatus(user.id);
+   176→23:46:03.718   66 |
+   177→23:46:03.718   67 |           if (!status.isLocked) {
+   178→23:46:03.718 
+   179→23:46:03.718 Import map: aliased to relative './src/lib/account-lock-service' inside of [project]/
+   180→23:46:03.718 
+   181→23:46:03.718 
+   182→23:46:03.718 https://nextjs.org/docs/messages/module-not-found
+   183→23:46:03.718 
+   184→23:46:03.718 
+   185→23:46:03.718 ./src/app/api/auth/security/lock-status/route.ts:170:43
+   186→23:46:03.718 Module not found: Can't resolve '@/lib/account-lock-service'
+   187→23:46:03.718   168 |
+   188→23:46:03.718   169 |           // Unlock the account
+   189→23:46:03.718 > 170 |           const { unlockAccount } = await import('@/lib/account-lock-service');
+   190→23:46:03.718       |                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   191→23:46:03.719   171 |           const result = await unlockAccount({
+   192→23:46:03.719   172 |             userId: user.id,
+   193→23:46:03.719   173 |             unlockedBy: 'user',
+   194→23:46:03.719 
+   195→23:46:03.719 Import map: aliased to relative './src/lib/account-lock-service' inside of [project]/
+   196→23:46:03.719 
+   197→23:46:03.719 
+   198→23:46:03.719 https://nextjs.org/docs/messages/module-not-found
+   199→23:46:03.719 
+   200→23:46:03.719 
+   201→23:46:03.719 ./src/app/api/auth/security/lock-status/route.ts:75:55
+   202→23:46:03.719 Module not found: Can't resolve '@/lib/auth'
+   203→23:46:03.719   73 |
+   204→23:46:03.719   74 |           // Generate and send unlock verification code
+   205→23:46:03.719 > 75 |           const { generateOTP, logAuthEvent } = await import('@/lib/auth');
+   206→23:46:03.719      |                                                       ^^^^^^^^^^^^^^^^^^^^
+   207→23:46:03.719   76 |           const otp = generateOTP();
+   208→23:46:03.719   77 |           const otpExpiry = new Date(Date.now() + 10 * 60 * 1000);
+   209→23:46:03.725   78 |
+   210→23:46:03.725 
+   211→23:46:03.725 Import map: aliased to relative './src/lib/auth' inside of [project]/
+   212→23:46:03.725 
+   213→23:46:03.725 
+   214→23:46:03.725 https://nextjs.org/docs/messages/module-not-found
+   215→23:46:03.725 
+   216→23:46:03.725 
+   217→23:46:03.725 ./src/app/api/auth/security/lock-status/route.ts:131:43
+   218→23:46:03.725 Module not found: Can't resolve '@/lib/auth'
+   219→23:46:03.725   129 |           // Verify the unlock code
+   220→23:46:03.725   130 |           const { db } = await import('@/lib/db');
+   221→23:46:03.725 > 131 |           const { secureCompare } = await import('@/lib/auth');
+   222→23:46:03.725       |                                           ^^^^^^^^^^^^^^^^^^^^
+   223→23:46:03.725   132 |
+   224→23:46:03.725   133 |           const userData = await db.user.findUnique({
+   225→23:46:03.725   134 |             where: { id: user.id },
+   226→23:46:03.725 
+   227→23:46:03.725 Import map: aliased to relative './src/lib/auth' inside of [project]/
+   228→23:46:03.725 
+   229→23:46:03.725 
+   230→23:46:03.725 https://nextjs.org/docs/messages/module-not-found
+   231→23:46:03.725 
+   232→23:46:03.725 
+   233→23:46:03.725 ./src/app/api/auth/security/lock-status/route.ts:80:32
+   234→23:46:03.725 Module not found: Can't resolve '@/lib/db'
+   235→23:46:03.725   78 |
+   236→23:46:03.725   79 |           // Store the unlock OTP in the user's resetOtp field (repurposed for unlock)
+   237→23:46:03.725 > 80 |           const { db } = await import('@/lib/db');
+   238→23:46:03.725      |                                ^^^^^^^^^^^^^^^^^^
+   239→23:46:03.725   81 |           await db.user.update({
+   240→23:46:03.726   82 |             where: { id: user.id },
+   241→23:46:03.726   83 |             data: {
+   242→23:46:03.726 
+   243→23:46:03.726 Import map: aliased to relative './src/lib/db' inside of [project]/
+   244→23:46:03.726 
+   245→23:46:03.726 
+   246→23:46:03.726 https://nextjs.org/docs/messages/module-not-found
+   247→23:46:03.726 
+   248→23:46:03.726 
+   249→23:46:03.726 ./src/app/api/auth/security/lock-status/route.ts:130:32
+   250→23:46:03.726 Module not found: Can't resolve '@/lib/db'
+   251→23:46:03.726   128 |
+   252→23:46:03.726   129 |           // Verify the unlock code
+   253→23:46:03.726 > 130 |           const { db } = await import('@/lib/db');
+   254→23:46:03.726       |                                ^^^^^^^^^^^^^^^^^^
+   255→23:46:03.726   131 |           const { secureCompare } = await import('@/lib/auth');
+   256→23:46:03.726   132 |
+   257→23:46:03.726   133 |           const userData = await db.user.findUnique({
+   258→23:46:03.726 
+   259→23:46:03.726 Import map: aliased to relative './src/lib/db' inside of [project]/
+   260→23:46:03.726 
+   261→23:46:03.726 
+   262→23:46:03.726 https://nextjs.org/docs/messages/module-not-found
+   263→23:46:03.726 
+   264→23:46:03.726 
+   265→23:46:03.726 ./src/app/api/settings/org/branding/route.ts:45:26
+   266→23:46:03.726 Module not found: Can't resolve '@/lib/db'
+   267→23:46:03.726   43 |
+   268→23:46:03.726   44 |     // Only owner/admin can update branding
+   269→23:46:03.726 > 45 |     const { db } = await import('@/lib/db');
+   270→23:46:03.726      |                          ^^^^^^^^^^^^^^^^^^
+   271→23:46:03.726   46 |     const membership = await db.orgMember.findFirst({
+   272→23:46:03.726   47 |       where: { orgId: authUser.orgId, userId: authUser.id },
+   273→23:46:03.726   48 |     });
+   274→23:46:03.727 
+   275→23:46:03.727 Import map: aliased to relative './src/lib/db' inside of [project]/
+   276→23:46:03.727 
+   277→23:46:03.727 
+   278→23:46:03.727 https://nextjs.org/docs/messages/module-not-found
+   279→23:46:03.727 
+   280→23:46:03.727 
+   281→23:46:03.727 ./src/app/api/settings/org/white-label/route.ts:64:26
+   282→23:46:03.727 Module not found: Can't resolve '@/lib/db'
+   283→23:46:03.727   62 |
+   284→23:46:03.727   63 |     // Only owner/admin can update white-label
+   285→23:46:03.727 > 64 |     const { db } = await import('@/lib/db');
+   286→23:46:03.727      |                          ^^^^^^^^^^^^^^^^^^
+   287→23:46:03.727   65 |     const membership = await db.orgMember.findFirst({
+   288→23:46:03.727   66 |       where: { orgId: authUser.orgId, userId: authUser.id },
+   289→23:46:03.727   67 |     });
+   290→23:46:03.727 
+   291→23:46:03.727 Import map: aliased to relative './src/lib/db' inside of [project]/
+   292→23:46:03.727 
+   293→23:46:03.728 
+   294→23:46:03.728 https://nextjs.org/docs/messages/module-not-found
+   295→23:46:03.728 
+   296→23:46:03.728 
+   297→23:46:03.728 ./src/app/api/auth/security/alerts/route.ts:246:41
+   298→23:46:03.728 Module not found: Can't resolve '@/lib/device-fingerprint'
+   299→23:46:03.729   244 |
+   300→23:46:03.729   245 |           // Trust the device
+   301→23:46:03.729 > 246 |           const { trustDevice } = await import('@/lib/device-fingerprint');
+   302→23:46:03.729       |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   303→23:46:03.729   247 |           const trusted = await trustDevice(user.id, deviceFingerprint);
+   304→23:46:03.729   248 |
+   305→23:46:03.729   249 |           if (!trusted) {
+   306→23:46:03.729 
+   307→23:46:03.729 Import map: aliased to relative './src/lib/device-fingerprint' inside of [project]/
+   308→23:46:03.729 
+   309→23:46:03.729 
+   310→23:46:03.729 https://nextjs.org/docs/messages/module-not-found
+   311→23:46:03.729 
+   312→23:46:03.729 
+   313→23:46:03.729 ./src/app/api/auth/security/devices/route.ts:20:41
+   314→23:46:03.729 Module not found: Can't resolve '@/lib/device-fingerprint'
+   315→23:46:03.729   18 |   return withAuth(request, async (user: AuthUser) => {
+   316→23:46:03.729   19 |     try {
+   317→23:46:03.729 > 20 |       const { getKnownDevices } = await import('@/lib/device-fingerprint');
+   318→23:46:03.729      |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   319→23:46:03.729   21 |       const devices = await getKnownDevices(user.id);
+   320→23:46:03.729   22 |
+   321→23:46:03.729   23 |       // Also get active sessions for cross-referencing
+   322→23:46:03.729 
+   323→23:46:03.729 Import map: aliased to relative './src/lib/device-fingerprint' inside of [project]/
+   324→23:46:03.729 
+   325→23:46:03.729 
+   326→23:46:03.729 https://nextjs.org/docs/messages/module-not-found
+   327→23:46:03.729 
+   328→23:46:03.729 
+   329→23:46:03.729 ./src/app/api/auth/security/lock-status/route.ts:91:56
+   330→23:46:03.729 Module not found: Can't resolve '@/lib/email'
+   331→23:46:03.729   89 |           // Send verification email
+   332→23:46:03.730   90 |           try {
+   333→23:46:03.730 > 91 |             const { isEmailServiceConfigured } = await import('@/lib/email');
+   334→23:46:03.730      |                                                        ^^^^^^^^^^^^^^^^^^^^^
+   335→23:46:03.730   92 |             const { shouldBypassEmail } = await import('@/lib/feature-flags');
+   336→23:46:03.730   93 |
+   337→23:46:03.730   94 |             if (isEmailServiceConfigured() && !shouldBypassEmail()) {
+   338→23:46:03.730 
+   339→23:46:03.730 Import map: aliased to relative './src/lib/email' inside of [project]/
+   340→23:46:03.730 
+   341→23:46:03.730 
+   342→23:46:03.730 https://nextjs.org/docs/messages/module-not-found
+   343→23:46:03.730 
+   344→23:46:03.730 
+   345→23:46:03.730 ./src/app/api/auth/security/lock-status/route.ts:95:56
+   346→23:46:03.730 Module not found: Can't resolve '@/lib/email'
+   347→23:46:03.730   93 |
+   348→23:46:03.730   94 |             if (isEmailServiceConfigured() && !shouldBypassEmail()) {
+   349→23:46:03.730 > 95 |               const { sendSecurityAlertEmail } = await import('@/lib/email');
+   350→23:46:03.730      |                                                        ^^^^^^^^^^^^^^^^^^^^^
+   351→23:46:03.730   96 |               await sendSecurityAlertEmail(
+   352→23:46:03.730   97 |                 user.email,
+   353→23:46:03.730   98 |                 user.name || 'User',
+   354→23:46:03.730 
+   355→23:46:03.730 Import map: aliased to relative './src/lib/email' inside of [project]/
+   356→23:46:03.730 
+   357→23:46:03.730 
+   358→23:46:03.730 https://nextjs.org/docs/messages/module-not-found
+   359→23:46:03.730 
+   360→23:46:03.730 
+   361→23:46:03.730 ./src/app/api/auth/verify-email/route.ts:123:68
+   362→23:46:03.730 Module not found: Can't resolve '@/lib/email'
+   363→23:46:03.730   121 |     // ── Send welcome email (non-blocking) ───────────────────────
+   364→23:46:03.731   122 |     try {
+   365→23:46:03.731 > 123 |       const { sendWelcomeEmail, isEmailServiceConfigured } = await import('@/lib/email');
+   366→23:46:03.731       |                                                                    ^^^^^^^^^^^^^^^^^^^^^
+   367→23:46:03.731   124 |       const { shouldBypassEmail } = await import('@/lib/feature-flags');
+   368→23:46:03.731   125 |       if (isEmailServiceConfigured() && !shouldBypassEmail()) {
+   369→23:46:03.731   126 |         await sendWelcomeEmail(user.email, user.name || 'User');
+   370→23:46:03.731 
+   371→23:46:03.731 Import map: aliased to relative './src/lib/email' inside of [project]/
+   372→23:46:03.731 
+   373→23:46:03.731 
+   374→23:46:03.731 https://nextjs.org/docs/messages/module-not-found
+   375→23:46:03.731 
+   376→23:46:03.731 
+   377→23:46:03.731 ./src/app/api/payments/confirm/route.ts:81:39
+   378→23:46:03.731 Module not found: Can't resolve '@/lib/email'
+   379→23:46:03.731   79 |         // ── Payment failed — send failure notification email ──
+   380→23:46:03.731   80 |         try {
+   381→23:46:03.731 > 81 |           const { sendEmail } = await import('@/lib/email');
+   382→23:46:03.731      |                                       ^^^^^^^^^^^^^^^^^^^^^
+   383→23:46:03.731   82 |           await sendEmail({
+   384→23:46:03.731   83 |             to: user.email,
+   385→23:46:03.731   84 |             subject: 'Payment Failed — AcquisitionOS',
+   386→23:46:03.731 
+   387→23:46:03.731 Import map: aliased to relative './src/lib/email' inside of [project]/
+   388→23:46:03.731 
+   389→23:46:03.731 
+   390→23:46:03.731 https://nextjs.org/docs/messages/module-not-found
+   391→23:46:03.731 
+   392→23:46:03.731 
+   393→23:46:03.731 ./src/app/api/auth/security/lock-status/route.ts:92:49
+   394→23:46:03.731 Module not found: Can't resolve '@/lib/feature-flags'
+   395→23:46:03.731   90 |           try {
+   396→23:46:03.732   91 |             const { isEmailServiceConfigured } = await import('@/lib/email');
+   397→23:46:03.732 > 92 |             const { shouldBypassEmail } = await import('@/lib/feature-flags');
+   398→23:46:03.732      |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   399→23:46:03.732   93 |
+   400→23:46:03.732   94 |             if (isEmailServiceConfigured() && !shouldBypassEmail()) {
+   401→23:46:03.732   95 |               const { sendSecurityAlertEmail } = await import('@/lib/email');
+   402→23:46:03.732 
+   403→23:46:03.732 Import map: aliased to relative './src/lib/feature-flags' inside of [project]/
+   404→23:46:03.732 
+   405→23:46:03.732 
+   406→23:46:03.732 https://nextjs.org/docs/messages/module-not-found
+   407→23:46:03.732 
+   408→23:46:03.732 
+   409→23:46:03.732 ./src/app/api/auth/verify-email/route.ts:124:43
+   410→23:46:03.732 Module not found: Can't resolve '@/lib/feature-flags'
+   411→23:46:03.732   122 |     try {
+   412→23:46:03.732   123 |       const { sendWelcomeEmail, isEmailServiceConfigured } = await import('@/lib/email');
+   413→23:46:03.732 > 124 |       const { shouldBypassEmail } = await import('@/lib/feature-flags');
+   414→23:46:03.732       |                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   415→23:46:03.732   125 |       if (isEmailServiceConfigured() && !shouldBypassEmail()) {
+   416→23:46:03.732   126 |         await sendWelcomeEmail(user.email, user.name || 'User');
+   417→23:46:03.732   127 |       }
+   418→23:46:03.732 
+   419→23:46:03.732 Import map: aliased to relative './src/lib/feature-flags' inside of [project]/
+   420→23:46:03.732 
+   421→23:46:03.732 
+   422→23:46:03.732 https://nextjs.org/docs/messages/module-not-found
+   423→23:46:03.732 
+   424→23:46:03.732 
+   425→23:46:04.470 
+   426→23:46:04.481 > Build error occurred
+   427→23:46:04.537 Error: Turbopack build failed with 385 errors:
+   428→23:46:04.537 ./src/app/layout.tsx:3:1
+   429→23:46:04.537 Module not found: Can't resolve './globals.css'
+   430→23:46:04.537   1 | import type { Metadata } from "next";
+   431→23:46:04.538   2 | import { Geist, Geist_Mono } from "next/font/google";
+   432→23:46:04.538 > 3 | import "./globals.css";
+   433→23:46:04.538     | ^^^^^^^^^^^^^^^^^^^^^^^
+   434→23:46:04.538   4 | import { Toaster } from "@/components/ui/sonner";
+   435→23:46:04.538   5 | import { Providers } from "@/components/providers";
+   436→23:46:04.538   6 |
+   437→23:46:04.538 
+   438→23:46:04.538 
+   439→23:46:04.538 
+   440→23:46:04.538 https://nextjs.org/docs/messages/module-not-found
+   441→23:46:04.539 
+   442→23:46:04.539 
+   443→23:46:04.539 ./src/app/layout.tsx:5:1
+   444→23:46:04.539 Module not found: Can't resolve '@/components/providers'
+   445→23:46:04.539   3 | import "./globals.css";
+   446→23:46:04.539   4 | import { Toaster } from "@/components/ui/sonner";
+   447→23:46:04.539 > 5 | import { Providers } from "@/components/providers";
+   448→23:46:04.539     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   449→23:46:04.539   6 |
+   450→23:46:04.539   7 | const geistSans = Geist({
+   451→23:46:04.539   8 |   variable: "--font-geist-sans",
+   452→23:46:04.539 
+   453→23:46:04.540 Import map: aliased to relative './src/components/providers' inside of [project]/
+   454→23:46:04.540 
+   455→23:46:04.540 
+   456→23:46:04.540 https://nextjs.org/docs/messages/module-not-found
+   457→23:46:04.540 
+   458→23:46:04.540 
+   459→23:46:04.540 ./src/app/(marketing)/privacy/page.tsx:7:1
+   460→23:46:04.540 Module not found: Can't resolve '@/components/ui/badge'
+   461→23:46:04.540    5 | import { Card, CardContent } from '@/components/ui/card';
+   462→23:46:04.540    6 | import { Button } from '@/components/ui/button';
+   463→23:46:04.540 >  7 | import { Badge } from '@/components/ui/badge';
+   464→23:46:04.540      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   465→23:46:04.540    8 | import { Separator } from '@/components/ui/separator';
+   466→23:46:04.541    9 | import { ArrowLeft, ShieldCheck, Lock } from 'lucide-react';
+   467→23:46:04.541   10 |
+   468→23:46:04.541 
+   469→23:46:04.541 Import map: aliased to relative './src/components/ui/badge' inside of [project]/
+   470→23:46:04.541 
+   471→23:46:04.541 
+   472→23:46:04.541 Import traces:
+   473→23:46:04.541   Client Component Browser:
+   474→23:46:04.541     ./src/app/(marketing)/privacy/page.tsx [Client Component Browser]
+   475→23:46:04.541     ./src/app/(marketing)/privacy/page.tsx [Server Component]
+   476→23:46:04.541 
+   477→23:46:04.541   Client Component SSR:
+   478→23:46:04.542     ./src/app/(marketing)/privacy/page.tsx [Client Component SSR]
+   479→23:46:04.542     ./src/app/(marketing)/privacy/page.tsx [Server Component]
+   480→23:46:04.542 
+   481→23:46:04.542 https://nextjs.org/docs/messages/module-not-found
+   482→23:46:04.542 
+   483→23:46:04.542 
+   484→23:46:04.542 ./src/app/(marketing)/terms/page.tsx:7:1
+   485→23:46:04.542 Module not found: Can't resolve '@/components/ui/badge'
+   486→23:46:04.542    5 | import { Card, CardContent } from '@/components/ui/card';
+   487→23:46:04.542    6 | import { Button } from '@/components/ui/button';
+   488→23:46:04.542 >  7 | import { Badge } from '@/components/ui/badge';
+   489→23:46:04.543      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   490→23:46:04.543    8 | import { Separator } from '@/components/ui/separator';
+   491→23:46:04.543    9 | import { ArrowLeft, FileText, Scale } from 'lucide-react';
+   492→23:46:04.543   10 |
+   493→23:46:04.543 
+   494→23:46:04.543 Import map: aliased to relative './src/components/ui/badge' inside of [project]/
+   495→23:46:04.543 
+   496→23:46:04.543 
+   497→23:46:04.543 Import traces:
+   498→23:46:04.543   Client Component Browser:
+   499→23:46:04.543     ./src/app/(marketing)/terms/page.tsx [Client Component Browser]
+   500→23:46:04.544     ./src/app/(marketing)/terms/page.tsx [Server Component]
+   501→23:46:04.544 
+   502→23:46:04.544   Client Component SSR:
+   503→23:46:04.544     ./src/app/(marketing)/terms/page.tsx [Client Component SSR]
+   504→23:46:04.544     ./src/app/(marketing)/terms/page.tsx [Server Component]
+   505→23:46:04.544 
+   506→23:46:04.544 https://nextjs.org/docs/messages/module-not-found
+   507→23:46:04.544 
+   508→23:46:04.544 
+   509→23:46:04.544 ./src/app/dashboard/billing/page.tsx:13:1
+   510→23:46:04.544 Module not found: Can't resolve '@/components/ui/badge'
+   511→23:46:04.544   11 | } from '@/components/ui/card';
+   512→23:46:04.545   12 | import { Button } from '@/components/ui/button';
+   513→23:46:04.545 > 13 | import { Badge } from '@/components/ui/badge';
+   514→23:46:04.545      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   515→23:46:04.545   14 | import { Separator } from '@/components/ui/separator';
+   516→23:46:04.545   15 | import {
+   517→23:46:04.545   16 |   Table,
+   518→23:46:04.545 
+   519→23:46:04.545 Import map: aliased to relative './src/components/ui/badge' inside of [project]/
+   520→23:46:04.546 
+   521→23:46:04.546 
+   522→23:46:04.546 Import traces:
+   523→23:46:04.546   Client Component Browser:
+   524→23:46:04.546     ./src/app/dashboard/billing/page.tsx [Client Component Browser]
+   525→23:46:04.546     ./src/app/dashboard/billing/page.tsx [Server Component]
+   526→23:46:04.546 
+   527→23:46:04.546   Client Component SSR:
+   528→23:46:04.546     ./src/app/dashboard/billing/page.tsx [Client Component SSR]
+   529→23:46:04.547     ./src/app/dashboard/billing/page.tsx [Server Component]
+   530→23:46:04.547 
+   531→23:46:04.547 https://nextjs.org/docs/messages/module-not-found
+   532→23:46:04.547 
+   533→23:46:04.547 
+   534→23:46:04.547 ./src/app/payment/success/page.tsx:7:1
+   535→23:46:04.547 Module not found: Can't resolve '@/components/ui/badge'
+   536→23:46:04.547    5 | import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+   537→23:46:04.547    6 | import { Button } from '@/components/ui/button';
+   538→23:46:04.548 >  7 | import { Badge } from '@/components/ui/badge';
+   539→23:46:04.548      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   540→23:46:04.548    8 | import { Separator } from '@/components/ui/separator';
+   541→23:46:04.548    9 | import {
+   542→23:46:04.548   10 |   CheckCircle2,
+   543→23:46:04.548 
+   544→23:46:04.548 Import map: aliased to relative './src/components/ui/badge' inside of [project]/
+   545→23:46:04.548 
+   546→23:46:04.548 
+   547→23:46:04.548 Import traces:
+   548→23:46:04.548   Client Component Browser:
+   549→23:46:04.549     ./src/app/payment/success/page.tsx [Client Component Browser]
+   550→23:46:04.549     ./src/app/payment/success/page.tsx [Server Component]
+   551→23:46:04.549 
+   552→23:46:04.549   Client Component SSR:
+   553→23:46:04.549     ./src/app/payment/success/page.tsx [Client Component SSR]
+   554→23:46:04.549     ./src/app/payment/success/page.tsx [Server Component]
+   555→23:46:04.549 
+   556→23:46:04.549 https://nextjs.org/docs/messages/module-not-found
+   557→23:46:04.549 
+   558→23:46:04.550 
+   559→23:46:04.550 ./src/app/(marketing)/privacy/page.tsx:6:1
+   560→23:46:04.550 Module not found: Can't resolve '@/components/ui/button'
+   561→23:46:04.550   4 | import Link from 'next/link';
+   562→23:46:04.550   5 | import { Card, CardContent } from '@/components/ui/card';
+   563→23:46:04.550 > 6 | import { Button } from '@/components/ui/button';
+   564→23:46:04.550     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   565→23:46:04.551   7 | import { Badge } from '@/components/ui/badge';
+   566→23:46:04.551   8 | import { Separator } from '@/components/ui/separator';
+   567→23:46:04.551   9 | import { ArrowLeft, ShieldCheck, Lock } from 'lucide-react';
+   568→23:46:04.551 
+   569→23:46:04.551 Import map: aliased to relative './src/components/ui/button' inside of [project]/
+   570→23:46:04.551 
+   571→23:46:04.551 
+   572→23:46:04.551 Import traces:
+   573→23:46:04.551   Client Component Browser:
+   574→23:46:04.552     ./src/app/(marketing)/privacy/page.tsx [Client Component Browser]
+   575→23:46:04.552     ./src/app/(marketing)/privacy/page.tsx [Server Component]
+   576→23:46:04.552 
+   577→23:46:04.552   Client Component SSR:
+   578→23:46:04.552     ./src/app/(marketing)/privacy/page.tsx [Client Component SSR]
+   579→23:46:04.552     ./src/app/(marketing)/privacy/page.tsx [Server Component]
+   580→23:46:04.552 
+   581→23:46:04.552 https://nextjs.org/docs/messages/module-not-found
+   582→23:46:04.553 
+   583→23:46:04.553 
+   584→23:46:04.553 ./src/app/(marketing)/terms/page.tsx:6:1
+   585→23:46:04.553 Module not found: Can't resolve '@/components/ui/button'
+   586→23:46:04.553   4 | import Link from 'next/link';
+   587→23:46:04.553   5 | import { Card, CardContent } from '@/components/ui/card';
+   588→23:46:04.553 > 6 | import { Button } from '@/components/ui/button';
+   589→23:46:04.553     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   590→23:46:04.554   7 | import { Badge } from '@/components/ui/badge';
+   591→23:46:04.554   8 | import { Separator } from '@/components/ui/separator';
+   592→23:46:04.554   9 | import { ArrowLeft, FileText, Scale } from 'lucide-react';
+   593→23:46:04.554 
+   594→23:46:04.554 Import map: aliased to relative './src/components/ui/button' inside of [project]/
+   595→23:46:04.554 
+   596→23:46:04.554 
+   597→23:46:04.554 Import traces:
+   598→23:46:04.554   Client Component Browser:
+   599→23:46:04.555     ./src/app/(marketing)/terms/page.tsx [Client Component Browser]
+   600→23:46:04.555     ./src/app/(marketing)/terms/page.tsx [Server Component]
+   601→23:46:04.555 
+   602→23:46:04.555   Client Component SSR:
+   603→23:46:04.555     ./src/app/(marketing)/terms/page.tsx [Client Component SSR]
+   604→23:46:04.555     ./src/app/(marketing)/terms/page.tsx [Server Component]
+   605→23:46:04.555 
+   606→23:46:04.555 https://nextjs.org/docs/messages/module-not-found
+   607→23:46:04.556 
+   608→23:46:04.556 
+   609→23:46:04.556 ./src/app/dashboard/billing/page.tsx:12:1
+   610→23:46:04.556 Module not found: Can't resolve '@/components/ui/button'
+   611→23:46:04.556   10 |   CardDescription,
+   612→23:46:04.556   11 | } from '@/components/ui/card';
+   613→23:46:04.556 > 12 | import { Button } from '@/components/ui/button';
+   614→23:46:04.556      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   615→23:46:04.557   13 | import { Badge } from '@/components/ui/badge';
+   616→23:46:04.557   14 | import { Separator } from '@/components/ui/separator';
+   617→23:46:04.557   15 | import {
+   618→23:46:04.557 
+   619→23:46:04.557 Import map: aliased to relative './src/components/ui/button' inside of [project]/
+   620→23:46:04.557 
+   621→23:46:04.557 
+   622→23:46:04.557 Import traces:
+   623→23:46:04.557   Client Component Browser:
+   624→23:46:04.558     ./src/app/dashboard/billing/page.tsx [Client Component Browser]
+   625→23:46:04.558     ./src/app/dashboard/billing/page.tsx [Server Component]
+   626→23:46:04.558 
+   627→23:46:04.558   Client Component SSR:
+   628→23:46:04.558     ./src/app/dashboard/billing/page.tsx [Client Component SSR]
+   629→23:46:04.558     ./src/app/dashboard/billing/page.tsx [Server Component]
+   630→23:46:04.558 
+   631→23:46:04.558 https://nextjs.org/docs/messages/module-not-found
+   632→23:46:04.558 
+   633→23:46:04.558 
+   634→23:46:04.559 ./src/app/payment/success/page.tsx:6:1
+   635→23:46:04.559 Module not found: Can't resolve '@/components/ui/button'
+   636→23:46:04.559   4 | import { useSearchParams, useRouter } from 'next/navigation';
+   637→23:46:04.559   5 | import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+   638→23:46:04.559 > 6 | import { Button } from '@/components/ui/button';
+   639→23:46:04.559     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   640→23:46:04.559   7 | import { Badge } from '@/components/ui/badge';
+   641→23:46:04.559   8 | import { Separator } from '@/components/ui/separator';
+   642→23:46:04.560   9 | import {
+   643→23:46:04.560 
+   644→23:46:04.560 Import map: aliased to relative './src/components/ui/button' inside of [project]/
+   645→23:46:04.560 
+   646→23:46:04.560 
+   647→23:46:04.560 Import traces:
+   648→23:46:04.560   Client Component Browser:
+   649→23:46:04.560     ./src/app/payment/success/page.tsx [Client Component Browser]
+   650→23:46:04.561     ./src/app/payment/success/page.tsx [Server Component]
+   651→23:46:04.561 
+   652→23:46:04.561   Client Component SSR:
+   653→23:46:04.561     ./src/app/payment/success/page.tsx [Client Component SSR]
+   654→23:46:04.561     ./src/app/payment/success/page.tsx [Server Component]
+   655→23:46:04.561 
+   656→23:46:04.561 https://nextjs.org/docs/messages/module-not-found
+   657→23:46:04.561 
+   658→23:46:04.562 
+   659→23:46:04.562 ./src/app/(marketing)/privacy/page.tsx:5:1
+   660→23:46:04.562 Module not found: Can't resolve '@/components/ui/card'
+   661→23:46:04.562   3 | import React from 'react';
+   662→23:46:04.562   4 | import Link from 'next/link';
+   663→23:46:04.562 > 5 | import { Card, CardContent } from '@/components/ui/card';
+   664→23:46:04.562     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   665→23:46:04.562   6 | import { Button } from '@/components/ui/button';
+   666→23:46:04.563   7 | import { Badge } from '@/components/ui/badge';
+   667→23:46:04.563   8 | import { Separator } from '@/components/ui/separator';
+   668→23:46:04.563 
+   669→23:46:04.563 Import map: aliased to relative './src/components/ui/card' inside of [project]/
+   670→23:46:04.563 
+   671→23:46:04.563 
+   672→23:46:04.563 Import traces:
+   673→23:46:04.563   Client Component Browser:
+   674→23:46:04.563     ./src/app/(marketing)/privacy/page.tsx [Client Component Browser]
+   675→23:46:04.564     ./src/app/(marketing)/privacy/page.tsx [Server Component]
+   676→23:46:04.564 
+   677→23:46:04.564   Client Component SSR:
+   678→23:46:04.564     ./src/app/(marketing)/privacy/page.tsx [Client Component SSR]
+   679→23:46:04.564     ./src/app/(marketing)/privacy/page.tsx [Server Component]
+   680→23:46:04.564 
+   681→23:46:04.564 https://nextjs.org/docs/messages/module-not-found
+   682→23:46:04.564 
+   683→23:46:04.565 
+   684→23:46:04.565 ./src/app/(marketing)/terms/page.tsx:5:1
+   685→23:46:04.565 Module not found: Can't resolve '@/components/ui/card'
+   686→23:46:04.565   3 | import React from 'react';
+   687→23:46:04.566   4 | import Link from 'next/link';
+   688→23:46:04.566 > 5 | import { Card, CardContent } from '@/components/ui/card';
+   689→23:46:04.566     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   690→23:46:04.566   6 | import { Button } from '@/components/ui/button';
+   691→23:46:04.566   7 | import { Badge } from '@/components/ui/badge';
+   692→23:46:04.566   8 | import { Separator } from '@/components/ui/separator';
+   693→23:46:04.566 
+   694→23:46:04.566 Import map: aliased to relative './src/components/ui/card' inside of [project]/
+   695→23:46:04.566 
+   696→23:46:04.567 
+   697→23:46:04.567 Import traces:
+   698→23:46:04.567   Client Component Browser:
+   699→23:46:04.567     ./src/app/(marketing)/terms/page.tsx [Client Component Browser]
+   700→23:46:04.567     ./src/app/(marketing)/terms/page.tsx [Server Component]
+   701→23:46:04.567 
+   702→23:46:04.567   Client Component SSR:
+   703→23:46:04.567     ./src/app/(marketing)/terms/page.tsx [Client Component SSR]
+   704→23:46:04.567     ./src/app/(marketing)/terms/page.tsx [Server Component]
+   705→23:46:04.567 
+   706→23:46:04.567 https://nextjs.org/docs/messages/module-not-found
+   707→23:46:04.568 
+   708→23:46:04.568 
+   709→23:46:04.568 ./src/app/dashboard/billing/page.tsx:5:1
+   710→23:46:04.568 Module not found: Can't resolve '@/components/ui/card'
+   711→23:46:04.568    3 | import React, { useState, useEffect, useCallback } from 'react';
+   712→23:46:04.568    4 | import { useRouter } from 'next/navigation';
+   713→23:46:04.568 >  5 | import {
+   714→23:46:04.568      | ^^^^^^^^
+   715→23:46:04.568 >  6 |   Card,
+   716→23:46:04.569      | ^^^^^^^
+   717→23:46:04.569 >  7 |   CardContent,
+   718→23:46:04.569      | ^^^^^^^
+   719→23:46:04.569 >  8 |   CardHeader,
+   720→23:46:04.569      | ^^^^^^^
+   721→23:46:04.569 >  9 |   CardTitle,
+   722→23:46:04.569      | ^^^^^^^
+   723→23:46:04.569 > 10 |   CardDescription,
+   724→23:46:04.569      | ^^^^^^^
+   725→23:46:04.569 > 11 | } from '@/components/ui/card';
+   726→23:46:04.570      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   727→23:46:04.570   12 | import { Button } from '@/components/ui/button';
+   728→23:46:04.570   13 | import { Badge } from '@/components/ui/badge';
+   729→23:46:04.570   14 | import { Separator } from '@/components/ui/separator';
+   730→23:46:04.570 
+   731→23:46:04.570 Import map: aliased to relative './src/components/ui/card' inside of [project]/
+   732→23:46:04.570 
+   733→23:46:04.570 
+   734→23:46:04.570 Import traces:
+   735→23:46:04.570   Client Component Browser:
+   736→23:46:04.570     ./src/app/dashboard/billing/page.tsx [Client Component Browser]
+   737→23:46:04.571     ./src/app/dashboard/billing/page.tsx [Server Component]
+   738→23:46:04.571 
+   739→23:46:04.571   Client Component SSR:
+   740→23:46:04.571     ./src/app/dashboard/billing/page.tsx [Client Component SSR]
+   741→23:46:04.571     ./src/app/dashboard/billing/page.tsx [Server Component]
+   742→23:46:04.571 
+   743→23:46:04.571 https://nextjs.org/docs/messages/module-not-found
+   744→23:46:04.571 
+   745→23:46:04.571 
+   746→23:46:04.571 ./src/app/payment/success/page.tsx:5:1
+   747→23:46:04.571 Module not found: Can't resolve '@/components/ui/card'
+   748→23:46:04.571   3 | import React, { useMemo, useState, useEffect, useCallback, useRef } from 'react';
+   749→23:46:04.572   4 | import { useSearchParams, useRouter } from 'next/navigation';
+   750→23:46:04.572 > 5 | import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+   751→23:46:04.572     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   752→23:46:04.572   6 | import { Button } from '@/components/ui/button';
+   753→23:46:04.572   7 | import { Badge } from '@/components/ui/badge';
+   754→23:46:04.572   8 | import { Separator } from '@/components/ui/separator';
+   755→23:46:04.572 
+   756→23:46:04.572 Import map: aliased to relative './src/components/ui/card' inside of [project]/
+   757→23:46:04.572 
+   758→23:46:04.572 
+   759→23:46:04.572 Import traces:
+   760→23:46:04.572   Client Component Browser:
+   761→23:46:04.572     ./src/app/payment/success/page.tsx [Client Component Browser]
+   762→23:46:04.572     ./src/app/payment/success/page.tsx [Server Component]
+   763→23:46:04.573 
+   764→23:46:04.573   Client Component SSR:
+   765→23:46:04.573     ./src/app/payment/success/page.tsx [Client Component SSR]
+   766→23:46:04.573     ./src/app/payment/success/page.tsx [Server Component]
+   767→23:46:04.573 
+   768→23:46:04.573 https://nextjs.org/docs/messages/module-not-found
+   769→23:46:04.573 
+   770→23:46:04.573 
+   771→23:46:04.573 ./src/app/(marketing)/privacy/page.tsx:8:1
+   772→23:46:04.573 Module not found: Can't resolve '@/components/ui/separator'
+   773→23:46:04.573    6 | import { Button } from '@/components/ui/button';
+   774→23:46:04.573    7 | import { Badge } from '@/components/ui/badge';
+   775→23:46:04.573 >  8 | import { Separator } from '@/components/ui/separator';
+   776→23:46:04.574      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   777→23:46:04.574    9 | import { ArrowLeft, ShieldCheck, Lock } from 'lucide-react';
+   778→23:46:04.574   10 |
+   779→23:46:04.574   11 | export default function PrivacyPolicyPage() {
+   780→23:46:04.574 
+   781→23:46:04.574 Import map: aliased to relative './src/components/ui/separator' inside of [project]/
+   782→23:46:04.574 
+   783→23:46:04.574 
+   784→23:46:04.574 Import traces:
+   785→23:46:04.574   Client Component Browser:
+   786→23:46:04.574     ./src/app/(marketing)/privacy/page.tsx [Client Component Browser]
+   787→23:46:04.575     ./src/app/(marketing)/privacy/page.tsx [Server Component]
+   788→23:46:04.575 
+   789→23:46:04.575   Client Component SSR:
+   790→23:46:04.575     ./src/app/(marketing)/privacy/page.tsx [Client Component SSR]
+   791→23:46:04.575     ./src/app/(marketing)/privacy/page.tsx [Server Component]
+   792→23:46:04.575 
+   793→23:46:04.575 https://nextjs.org/docs/messages/module-not-found
+   794→23:46:04.575 
+   795→23:46:04.575 
+   796→23:46:04.575 ./src/app/(marketing)/terms/page.tsx:8:1
+   797→23:46:04.575 Module not found: Can't resolve '@/components/ui/separator'
+   798→23:46:04.576    6 | import { Button } from '@/components/ui/button';
+   799→23:46:04.577    7 | import { Badge } from '@/components/ui/badge';
+   800→23:46:04.577 >  8 | import { Separator } from '@/components/ui/separator';
+   801→23:46:04.577      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   802→23:46:04.577    9 | import { ArrowLeft, FileText, Scale } from 'lucide-react';
+   803→23:46:04.577   10 |
+   804→23:46:04.577   11 | export default function TermsOfServicePage() {
+   805→23:46:04.578 
+   806→23:46:04.578 Import map: aliased to relative './src/components/ui/separator' inside of [project]/
+   807→23:46:04.578 
+   808→23:46:04.578 
+   809→23:46:04.578 Import traces:
+   810→23:46:04.578   Client Component Browser:
+   811→23:46:04.578     ./src/app/(marketing)/terms/page.tsx [Client Component Browser]
+   812→23:46:04.578     ./src/app/(marketing)/terms/page.tsx [Server Component]
+   813→23:46:04.579 
+   814→23:46:04.579   Client Component SSR:
+   815→23:46:04.579     ./src/app/(marketing)/terms/page.tsx [Client Component SSR]
+   816→23:46:04.579     ./src/app/(marketing)/terms/page.tsx [Server Component]
+   817→23:46:04.579 
+   818→23:46:04.579 https://nextjs.org/docs/messages/module-not-found
+   819→23:46:04.579 
+   820→23:46:04.579 
+   821→23:46:04.579 ./src/app/payment/success/page.tsx:8:1
+   822→23:46:04.579 Module not found: Can't resolve '@/components/ui/separator'
+   823→23:46:04.579    6 | import { Button } from '@/components/ui/button';
+   824→23:46:04.579    7 | import { Badge } from '@/components/ui/badge';
+   825→23:46:04.579 >  8 | import { Separator } from '@/components/ui/separator';
+   826→23:46:04.580      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   827→23:46:04.580    9 | import {
+   828→23:46:04.580   10 |   CheckCircle2,
+   829→23:46:04.580   11 |   XCircle,
+   830→23:46:04.580 
+   831→23:46:04.580 Import map: aliased to relative './src/components/ui/separator' inside of [project]/
+   832→23:46:04.580 
+   833→23:46:04.580 
+   834→23:46:04.580 Import traces:
+   835→23:46:04.580   Client Component Browser:
+   836→23:46:04.580     ./src/app/payment/success/page.tsx [Client Component Browser]
+   837→23:46:04.580     ./src/app/payment/success/page.tsx [Server Component]
+   838→23:46:04.580 
+   839→23:46:04.580   Client Component SSR:
+   840→23:46:04.580     ./src/app/payment/success/page.tsx [Client Component SSR]
+   841→23:46:04.581     ./src/app/payment/success/page.tsx [Server Component]
+   842→23:46:04.581 
+   843→23:46:04.581 https://nextjs.org/docs/messages/module-not-found
+   844→23:46:04.581 
+   845→23:46:04.581 
+   846→23:46:04.581 ./src/app/layout.tsx:4:1
+   847→23:46:04.581 Module not found: Can't resolve '@/components/ui/sonner'
+   848→23:46:04.581   2 | import { Geist, Geist_Mono } from "next/font/google";
+   849→23:46:04.582   3 | import "./globals.css";
+   850→23:46:04.582 > 4 | import { Toaster } from "@/components/ui/sonner";
+   851→23:46:04.582     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   852→23:46:04.582   5 | import { Providers } from "@/components/providers";
+   853→23:46:04.582   6 |
+   854→23:46:04.582   7 | const geistSans = Geist({
+   855→23:46:04.582 
+   856→23:46:04.582 Import map: aliased to relative './src/components/ui/sonner' inside of [project]/
+   857→23:46:04.583 
+   858→23:46:04.583 
+   859→23:46:04.583 https://nextjs.org/docs/messages/module-not-found
+   860→23:46:04.583 
+   861→23:46:04.583 
+   862→23:46:04.583 ./src/app/dashboard/billing/page.tsx:15:1
+   863→23:46:04.583 Module not found: Can't resolve '@/components/ui/table'
+   864→23:46:04.583   13 | import { Badge } from '@/components/ui/badge';
+   865→23:46:04.584   14 | import { Separator } from '@/components/ui/separator';
+   866→23:46:04.584 > 15 | import {
+   867→23:46:04.584      | ^^^^^^^^
+   868→23:46:04.584 > 16 |   Table,
+   869→23:46:04.584      | ^^^^^^^^
+   870→23:46:04.584 > 17 |   TableBody,
+   871→23:46:04.584      | ^^^^^^^^
+   872→23:46:04.585 > 18 |   TableCell,
+   873→23:46:04.585      | ^^^^^^^^
+   874→23:46:04.585 > 19 |   TableHead,
+   875→23:46:04.585      | ^^^^^^^^
+   876→23:46:04.585 > 20 |   TableHeader,
+   877→23:46:04.585      | ^^^^^^^^
+   878→23:46:04.585 > 21 |   TableRow,
+   879→23:46:04.586      | ^^^^^^^^
+   880→23:46:04.586 > 22 | } from '@/components/ui/table';
+   881→23:46:04.586      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   882→23:46:04.586   23 | import {
+   883→23:46:04.586   24 |   CreditCard,
+   884→23:46:04.586   25 |   Zap,
+   885→23:46:04.586 
+   886→23:46:04.587 Import map: aliased to relative './src/components/ui/table' inside of [project]/
+   887→23:46:04.587 
+   888→23:46:04.587 
+   889→23:46:04.587 Import traces:
+   890→23:46:04.587   Client Component Browser:
+   891→23:46:04.587     ./src/app/dashboard/billing/page.tsx [Client Component Browser]
+   892→23:46:04.587     ./src/app/dashboard/billing/page.tsx [Server Component]
+   893→23:46:04.587 
+   894→23:46:04.588   Client Component SSR:
+   895→23:46:04.588     ./src/app/dashboard/billing/page.tsx [Client Component SSR]
+   896→23:46:04.588     ./src/app/dashboard/billing/page.tsx [Server Component]
+   897→23:46:04.588 
+   898→23:46:04.588 https://nextjs.org/docs/messages/module-not-found
+   899→23:46:04.588 
+   900→23:46:04.588 
+   901→23:46:04.588 ./src/app/api/admin/billing/route.ts:13:1
+   902→23:46:04.588 Module not found: Can't resolve '@/lib/admin-billing-service'
+   903→23:46:04.589   11 | import { NextRequest, NextResponse } from 'next/server';
+   904→23:46:04.589   12 | import { withAdmin } from '@/lib/auth-middleware';
+   905→23:46:04.589 > 13 | import {
+   906→23:46:04.589      | ^^^^^^^^
+   907→23:46:04.589 > 14 |   getBillingOverview,
+   908→23:46:04.589      | ^^^^^^^^^^^^^^^^^^^^^
+   909→23:46:04.589 > 15 |   getWebhookMonitoring,
+   910→23:46:04.589      | ^^^^^^^^^^^^^^^^^^^^^
+   911→23:46:04.590 > 16 |   getFailedPaymentLogs,
+   912→23:46:04.590      | ^^^^^^^^^^^^^^^^^^^^^
+   913→23:46:04.590 > 17 |   getInvoiceTracking,
+   914→23:46:04.590      | ^^^^^^^^^^^^^^^^^^^^^
+   915→23:46:04.590 > 18 |   getSubscriptionMetrics,
+   916→23:46:04.590      | ^^^^^^^^^^^^^^^^^^^^^
+   917→23:46:04.591 > 19 |   getRevenueByPeriod,
+   918→23:46:04.591      | ^^^^^^^^^^^^^^^^^^^^^
+   919→23:46:04.591 > 20 |   type SubscriptionMetricsPeriod,
+   920→23:46:04.591      | ^^^^^^^^^^^^^^^^^^^^^
+   921→23:46:04.591 > 21 | } from '@/lib/admin-billing-service';
+   922→23:46:04.591      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   923→23:46:04.591   22 |
+   924→23:46:04.592   23 | // ═══════════════════════════════════════════════════════════════════
+   925→23:46:04.592   24 | // GET /api/admin/billing?action=<action>&...
+   926→23:46:04.592 
+   927→23:46:04.592 Import map: aliased to relative './src/lib/admin-billing-service' inside of [project]/
+   928→23:46:04.592 
+   929→23:46:04.592 
+   930→23:46:04.592 https://nextjs.org/docs/messages/module-not-found
+   931→23:46:04.592 
+   932→23:46:04.593 
+   933→23:46:04.593 ./src/app/api/settings/api-keys/[id]/revoke/route.ts:8:1
+   934→23:46:04.593 Module not found: Can't resolve '@/lib/api-key-service'
+   935→23:46:04.593    6 | import { NextRequest, NextResponse } from 'next/server';
+   936→23:46:04.593    7 | import { getAuthUser } from '@/lib/auth';
+   937→23:46:04.593 >  8 | import { revokeApiKey } from '@/lib/api-key-service';
+   938→23:46:04.594      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   939→23:46:04.594    9 |
+   940→23:46:04.594   10 | export async function POST(
+   941→23:46:04.594   11 |   request: NextRequest,
+   942→23:46:04.594 
+   943→23:46:04.594 Import map: aliased to relative './src/lib/api-key-service' inside of [project]/
+   944→23:46:04.594 
+   945→23:46:04.594 
+   946→23:46:04.594 https://nextjs.org/docs/messages/module-not-found
+   947→23:46:04.595 
+   948→23:46:04.595 
+   949→23:46:04.595 ./src/app/api/settings/api-keys/[id]/rotate/route.ts:8:1
+   950→23:46:04.595 Module not found: Can't resolve '@/lib/api-key-service'
+   951→23:46:04.595    6 | import { NextRequest, NextResponse } from 'next/server';
