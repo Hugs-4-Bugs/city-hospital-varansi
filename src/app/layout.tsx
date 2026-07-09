@@ -1,26 +1,50 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Fraunces, Noto_Serif_Devanagari } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "@/components/ui/sonner";
-import { Providers } from "@/components/providers";
+import { Toaster } from "@/components/ui/toaster";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
+  display: "swap",
+  axes: ["opsz", "SOFT"],
+});
+
+const devanagari = Noto_Serif_Devanagari({
+  variable: "--font-devanagari",
+  subsets: ["devanagari"],
+  weight: ["500", "600"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "AcquisitionOS — AI-Powered Client Acquisition System",
-  description: "AcquisitionOS is the AI-powered client acquisition system that reveals hidden opportunities, automates outreach, and closes deals faster. Acquire smarter. Close faster. Dominate every market.",
-  keywords: ["AcquisitionOS", "Client Acquisition", "AI Lead Intelligence", "Deal Intelligence", "Business Acquisition", "Sales Dashboard", "Pipeline Management", "CRM", "Outreach Automation"],
-  icons: {
-    icon: "/icon.svg",
+  title: "City Hospital, Sigra, Varanasi | Gynaecology, Maternity & 24×7 Emergency Care",
+  description:
+    "City Hospital (सिटी हॉस्पिटल), Chandrika Nagar, Sigra, Varanasi — multi-specialty care led by Dr. Anjali Yadav (Gynaecology & Maternity). Open 24 hours with emergency services, general surgery, orthopedics and diagnostics.",
+  keywords: [
+    "City Hospital Varanasi",
+    "Sigra hospital",
+    "Dr. Anjali Yadav",
+    "gynaecologist Varanasi",
+    "maternity hospital Varanasi",
+    "24 hours hospital Varanasi",
+    "emergency care Varanasi",
+  ],
+  authors: [{ name: "Prabhat Kumar" }],
+  openGraph: {
+    title: "City Hospital, Sigra, Varanasi | 24×7 Multi-Specialty Care",
+    description:
+      "Gynaecology & maternity care under Dr. Anjali Yadav, round-the-clock emergency, surgery, orthopedics & diagnostics. Open 24 hours in Sigra, Varanasi.",
+    type: "website",
+    locale: "en_IN",
   },
+  alternates: { canonical: "/" },
 };
 
 export default function RootLayout({
@@ -29,23 +53,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
-      <head>
-        <meta name="theme-color" content="#0A0A0F" />
-        <meta property="og:title" content="AcquisitionOS — AI-Powered Client Acquisition System" />
-        <meta property="og:description" content="AI-powered client acquisition that reveals opportunities, automates outreach, and closes deals." />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="AcquisitionOS — AI-Powered Client Acquisition" />
-        <meta name="twitter:description" content="Acquire smarter. Close faster. Dominate every market." />
-      </head>
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
+        className={`${inter.variable} ${fraunces.variable} ${devanagari.variable} antialiased bg-background text-foreground`}
       >
-        <Providers>
-          {children}
-          <Toaster />
-        </Providers>
+        {children}
+        <Toaster />
       </body>
     </html>
   );

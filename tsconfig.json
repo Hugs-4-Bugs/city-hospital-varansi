@@ -38,12 +38,10 @@
   ],
   "exclude": [
     "node_modules",
-    ".next",
-    "tests",
-    "src/__tests__",
-    "vitest.setup.ts",
     "examples",
+    "skills",
     "mini-services",
-    "skills"
+    "scripts",
+    "download"
   ]
 }
