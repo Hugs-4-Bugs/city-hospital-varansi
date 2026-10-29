@@ -5,28 +5,24 @@ import {
   motion,
   useScroll,
   useTransform,
-  useSpring,
   useReducedMotion,
 } from "framer-motion";
-import { Phone, CalendarCheck, Star, ChevronDown, MapPin, Clock, Heart, Stethoscope, ShieldCheck } from "lucide-react";
+import { Phone, CalendarCheck, Star, ChevronDown, MapPin, Heart, Stethoscope, ShieldCheck } from "lucide-react";
 import { hospital } from "@/lib/data";
 
 export default function Hero() {
   const root = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
   const [scrolled, setScrolled] = useState(false);
-  const [videoOk, setVideoOk] = useState(true);
 
   const { scrollYProgress } = useScroll({
     target: root,
     offset: ["start start", "end start"],
   });
 
-  const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
-  const yBgSpring = useSpring(yBg, { stiffness: 120, damping: 30, mass: 0.4 });
-  const scaleBg = useTransform(scrollYProgress, [0, 1], [1.05, 1.2]);
-  const overlayOpacity = useTransform(scrollYProgress, [0, 1], [0.78, 0.95]);
-  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+  const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const scaleBg = useTransform(scrollYProgress, [0, 1], [1.05, 1.15]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "35%"]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
   useEffect(() => {
@@ -56,9 +52,9 @@ export default function Hero() {
   }, [reduce]);
 
   const floatingCards = [
-    { icon: Heart, label: "Women's Healthcare", delay: 0.9 },
-    { icon: Stethoscope, label: "Expert Consultations", delay: 1.05 },
-    { icon: ShieldCheck, label: "Patient-Centred Care", delay: 1.2 },
+    { icon: Heart, label: "Women's Healthcare" },
+    { icon: Stethoscope, label: "Expert Consultations" },
+    { icon: ShieldCheck, label: "Patient-Centred Care" },
   ];
 
   return (
@@ -66,54 +62,31 @@ export default function Hero() {
       ref={root}
       className="relative min-h-[100svh] w-full overflow-hidden bg-[var(--brand-navy)] text-white"
     >
-      {/* Background: video with image fallback */}
+      {/* Optimized background image via next/image (priority for LCP) */}
       <motion.div
-        style={{ y: yBgSpring, scale: scaleBg }}
+        style={{ y: yBg, scale: scaleBg }}
         className="absolute inset-0 -z-10"
         aria-hidden
       >
-        {videoOk && (
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=2000&q=80"
-            className="absolute inset-0 h-full w-full object-cover"
-            onError={() => setVideoOk(false)}
-          >
-            <source
-              src="https://cdn.pixabay.com/video/2022/12/25/142911-781565658_large.mp4"
-              type="video/mp4"
-            />
-          </video>
-        )}
-        {/* Image fallback / poster always behind video */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=2000&q=80')",
-          }}
+        <img
+          src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1600&q=70"
+          alt=""
+          className="h-full w-full object-cover"
+          fetchPriority="high"
+          decoding="async"
         />
       </motion.div>
 
       {/* Gradient overlay for text readability */}
-      <motion.div
-        style={{ opacity: overlayOpacity }}
+      <div
         className="absolute inset-0 -z-10"
+        style={{
+          background:
+            "linear-gradient(105deg, rgba(18,48,74,0.95) 0%, rgba(18,48,74,0.82) 40%, rgba(13,148,136,0.55) 100%)",
+        }}
         aria-hidden
-      >
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(105deg, rgba(18,48,74,0.95) 0%, rgba(18,48,74,0.82) 40%, rgba(13,148,136,0.55) 100%)",
-          }}
-        />
-      </motion.div>
+      />
 
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-grain opacity-20" aria-hidden />
       <div className="pointer-events-none absolute -left-32 top-24 -z-10 h-72 w-72 rounded-full bg-[var(--brand-teal)]/30 blur-3xl animate-drift" aria-hidden />
       <div className="pointer-events-none absolute right-0 top-1/3 -z-10 h-80 w-80 rounded-full bg-[var(--brand-cyan)]/20 blur-3xl animate-float-slow" aria-hidden />
 
@@ -125,7 +98,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
           className="flex flex-wrap items-center gap-3"
         >
           <span className="relative inline-flex items-center gap-2 rounded-full bg-emerald-400/15 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200 ring-1 ring-emerald-300/30">
@@ -145,11 +118,11 @@ export default function Hero() {
           </span>
         </motion.div>
 
-        {/* MAIN HEADING — plain HTML text, immediately visible, no masking */}
+        {/* MAIN HEADING — plain HTML text, immediately visible */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           className="mt-6 font-[var(--font-fraunces)] text-6xl font-bold leading-[0.95] tracking-tight sm:text-7xl lg:text-[8.5rem]"
         >
           <span className="block">CITY HOSPITAL</span>
@@ -162,7 +135,7 @@ export default function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
           className="mt-5 font-[var(--font-fraunces)] text-xl font-light text-[var(--brand-cyan)] sm:text-2xl lg:text-3xl"
         >
           Compassionate Care. Better Health. Brighter Futures.
@@ -172,7 +145,7 @@ export default function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="mt-4 max-w-xl text-pretty text-base leading-relaxed text-white/80 sm:text-lg"
         >
           Comprehensive healthcare with compassionate specialists, modern medical
@@ -183,7 +156,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4"
         >
           <a
@@ -208,7 +181,7 @@ export default function Hero() {
         <motion.div
           initial="hidden"
           animate="show"
-          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.12, delayChildren: 0.85 } } }}
+          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1, delayChildren: 0.7 } } }}
           className="mt-10 flex flex-wrap gap-3"
         >
           {floatingCards.map((card) => (
@@ -216,9 +189,8 @@ export default function Hero() {
               key={card.label}
               variants={{
                 hidden: { opacity: 0, y: 20, scale: 0.9 },
-                show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+                show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
               }}
-              whileHover={{ y: -4, scale: 1.03 }}
               className="flex items-center gap-2.5 rounded-2xl bg-white/10 px-4 py-3 backdrop-blur-md ring-1 ring-white/15"
             >
               <card.icon className="h-4 w-4 text-[var(--brand-cyan)]" />
@@ -231,7 +203,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
           className="mt-10 grid w-full max-w-2xl grid-cols-2 gap-px overflow-hidden rounded-2xl bg-white/10 ring-1 ring-white/15 sm:grid-cols-4"
         >
           {[

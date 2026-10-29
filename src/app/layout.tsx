@@ -44,7 +44,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
   },
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "https://cityhospital-drab.vercel.app/",
+  },
 };
 
 export default function RootLayout({

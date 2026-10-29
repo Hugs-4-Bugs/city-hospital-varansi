@@ -16,51 +16,49 @@ import {
   Flower2,
   ShieldCheck,
   Sparkles,
-  Clock,
   Phone,
   CalendarCheck,
   ChevronDown,
-  Play,
 } from "lucide-react";
 import { hospital } from "@/lib/data";
-import { SplitText, Reveal } from "./Motion";
+import { Reveal } from "./Motion";
 
 const services = [
   {
     icon: Baby,
     title: "Pregnancy & Antenatal Care",
     desc: "Regular pregnancy check-ups, maternal health monitoring, and personalised guidance throughout pregnancy.",
-    img: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&w=600&q=80",
+    img: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&w=500&q=60",
   },
   {
     icon: Heart,
     title: "Normal Delivery & Birth Support",
     desc: "Individualised delivery planning and supportive maternity care, based on the mother's clinical needs and medical assessment.",
-    img: "https://images.unsplash.com/photo-1530978049014-c8b5f9c75735?auto=format&fit=crop&w=600&q=80",
+    img: "https://images.unsplash.com/photo-1530978049014-c8b5f9c75735?auto=format&fit=crop&w=500&q=60",
   },
   {
     icon: ShieldCheck,
     title: "High-Risk Pregnancy Care",
     desc: "Care planning and monitoring for pregnancies that require additional medical attention.",
-    img: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80",
+    img: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=500&q=60",
   },
   {
     icon: Stethoscope,
     title: "Gynaecological Consultations",
     desc: "Professional consultations for menstrual concerns, reproductive health, and common gynaecological conditions.",
-    img: "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&w=600&q=80",
+    img: "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&w=500&q=60",
   },
   {
     icon: Flower2,
     title: "Fertility & Reproductive Health",
     desc: "Consultations and evaluation for fertility concerns and reproductive health.",
-    img: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=600&q=80",
+    img: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=500&q=60",
   },
   {
     icon: Activity,
     title: "Postnatal & New-Mother Care",
     desc: "Follow-up consultations, recovery guidance, and support for mothers after delivery.",
-    img: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=600&q=80",
+    img: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=500&q=60",
   },
 ];
 
@@ -141,7 +139,6 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
 export default function MaternityShowcase() {
   const root = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
-  const [videoOk, setVideoOk] = useState(true);
 
   const { scrollYProgress } = useScroll({
     target: root,
@@ -185,7 +182,7 @@ export default function MaternityShowcase() {
           </Reveal>
         </div>
 
-        {/* Featured 16:9 visual with video loop */}
+        {/* Featured 16:9 visual with parallax image */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 40 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -194,33 +191,14 @@ export default function MaternityShowcase() {
           className="relative mt-12 overflow-hidden rounded-3xl shadow-lift ring-1 ring-[var(--brand-navy)]/10"
           style={{ aspectRatio: "16/9" }}
         >
-          {/* Video with poster + fallback */}
-          {videoOk && !reduce && (
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              poster="https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&w=1600&q=80"
-              className="absolute inset-0 h-full w-full object-cover"
-              onError={() => setVideoOk(false)}
-            >
-              <source
-                src="https://cdn.pixabay.com/video/2020/04/09/35881-410541414_large.mp4"
-                type="video/mp4"
-              />
-            </video>
-          )}
-          {/* Image fallback always behind */}
+          {/* Optimized image (lazy-loaded, no video overhead) */}
           <motion.div style={{ y: yFeatured }} className="absolute inset-0 scale-105">
-            <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{
-                backgroundImage:
-                  "url('https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&w=1600&q=80')",
-              }}
-              role="img"
-              aria-label="Doctor consulting with an expectant mother"
+            <img
+              src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&w=1200&q=65"
+              alt="Doctor consulting with an expectant mother"
+              className="h-full w-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
           </motion.div>
           {/* Gradient overlay */}
@@ -295,11 +273,12 @@ export default function MaternityShowcase() {
               >
                 {/* Image */}
                 <div className="relative h-44 overflow-hidden sm:h-48">
-                  <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                    style={{ backgroundImage: `url('${s.img}')` }}
-                    role="img"
-                    aria-label={s.title}
+                  <img
+                    src={s.img}
+                    alt={s.title}
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--brand-navy)]/60 to-transparent" />
                   <motion.div

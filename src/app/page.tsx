@@ -1,21 +1,24 @@
+import dynamic from "next/dynamic";
 import SmoothScroll from "@/components/site/SmoothScroll";
 import { ScrollProgress } from "@/components/site/Motion";
 import Header from "@/components/site/Header";
 import Hero from "@/components/site/Hero";
 import TrustBar from "@/components/site/TrustBar";
 import Specialist from "@/components/site/Specialist";
-import MaternityShowcase from "@/components/site/MaternityShowcase";
-import Facilities from "@/components/site/Facilities";
-import Services from "@/components/site/Services";
-import CinematicPin from "@/components/site/CinematicPin";
-import WhyChoose from "@/components/site/WhyChoose";
-import Team from "@/components/site/Team";
-import Reviews from "@/components/site/Reviews";
-import AIPromptBar from "@/components/site/AIPromptBar";
-import Location from "@/components/site/Location";
-import CTABanner from "@/components/site/CTABanner";
-import Footer from "@/components/site/Footer";
-import MobileActionBar from "@/components/site/MobileActionBar";
+
+// Lazy-load below-the-fold sections to reduce initial JS bundle
+const MaternityShowcase = dynamic(() => import("@/components/site/MaternityShowcase"));
+const Facilities = dynamic(() => import("@/components/site/Facilities"));
+const Services = dynamic(() => import("@/components/site/Services"));
+const CinematicPin = dynamic(() => import("@/components/site/CinematicPin"));
+const WhyChoose = dynamic(() => import("@/components/site/WhyChoose"));
+const Team = dynamic(() => import("@/components/site/Team"));
+const Reviews = dynamic(() => import("@/components/site/Reviews"));
+const AIPromptBar = dynamic(() => import("@/components/site/AIPromptBar"));
+const Location = dynamic(() => import("@/components/site/Location"));
+const CTABanner = dynamic(() => import("@/components/site/CTABanner"));
+const Footer = dynamic(() => import("@/components/site/Footer"));
+const MobileActionBar = dynamic(() => import("@/components/site/MobileActionBar"));
 
 export default function Home() {
   return (
