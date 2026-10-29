@@ -64,3 +64,8 @@ server.log
 .zscripts/
 .z-ai-config
 .claude
+# Local artifacts
+/Caddyfile
+/db/
+/tool-results/
+/upload/
