@@ -130,16 +130,15 @@ export default function Hero() {
           style={{ y: titleY, opacity: titleOpacity, scale: titleScale }}
           className="mt-6 font-[var(--font-fraunces)] text-5xl font-light leading-[0.95] tracking-tight sm:text-7xl lg:text-[8rem]"
         >
-          <span className="block overflow-hidden">
-            <SplitText text="City" delay={0.2} stagger={0.06} />
-            <span className="mx-3 inline-block" />
-            <SplitText text="Hospital" delay={0.32} stagger={0.045} />
+          <span className="flex flex-wrap items-baseline gap-x-[0.35em] sm:gap-x-[0.4em]">
+            <SplitText text="City" delay={0.2} stagger={0.06} className="block" />
+            <SplitText text="Hospital" delay={0.32} stagger={0.045} className="block" />
           </span>
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="font-deva mt-2 block text-3xl font-medium text-[var(--brand-gold-soft)] sm:text-4xl lg:text-5xl"
+            className="font-deva mt-2 block text-2xl font-medium text-[var(--brand-gold-soft)] sm:text-3xl lg:text-4xl"
           >
             {hospital.nameHindi}
           </motion.span>
