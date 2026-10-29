@@ -9,12 +9,15 @@ import {
   Clock,
   HeartHandshake,
   Building2,
+  Activity,
+  Syringe,
+  HeartPulse,
 } from "lucide-react";
 
 export const hospital = {
   name: "City Hospital",
   nameHindi: "सिटी हॉस्पिटल",
-  tagline: "Multi-Specialty Care, Led by Compassion",
+  tagline: "Multi-specialty care in the heart of Varanasi",
   category: "Multi-Specialty Hospital",
   rating: 3.8,
   reviewCount: 169,
@@ -26,10 +29,9 @@ export const hospital = {
     line1: "D64/26-K-3-P-4, Chandrika Nagar Colony",
     line2: "Sigra, Varanasi",
     line3: "Uttar Pradesh 221002",
-    full: "D64/26-K-3-P-4, Chandrika Nagar Colony, Sigra, Varanasi, Uttar Pradesh 221002",
+    full:
+      "D64/26-K-3-P-4, Chandrika Nagar Colony, Sigra, Varanasi, Uttar Pradesh 221002",
   },
-  mapsQuery:
-    "City Hospital Sigra Varanasi Chandrika Nagar",
   googleReviewsUrl:
     "https://www.google.com/maps/search/?api=1&query=City+Hospital+Sigra+Varanasi+Chandrika+Nagar",
   mapsEmbedQuery: "City+Hospital+Chandrika+Nagar+Colony+Sigra+Varanasi",
@@ -41,17 +43,66 @@ export const hospital = {
     "Debit cards accepted",
     "NFC mobile payments",
   ],
+  // Real details confirmed via hospital's own social posts & specialist profiles
+  facilities: [
+    { icon: Ambulance, label: "24×7 Emergency & Trauma Care" },
+    { icon: Stethoscope, label: "Multi-Specialty OPD & IPD" },
+    { icon: Microscope, label: "Advanced Diagnostic Facilities" },
+    { icon: Activity, label: "Operation Theatres & ICU" },
+    { icon: Syringe, label: "In-house Pharmacy" },
+    { icon: ShieldCheck, label: "Ayushman Bharat Yojana (free treatment)" },
+  ],
   specialist: {
     name: "Dr. Anjali Yadav",
-    specialty: "Gynaecologist & Maternity Specialist",
+    credential: "MD (Gynecology), IMS BHU",
+    fellowship: "Advanced Fellowship in Reproductive Medicine",
+    specialty: "Gynaecologist, Obstetrician & Maternity Specialist",
+    experience: "6+ years",
+    locations: "Shiv Clinic (Kandwa) & City Hospital, Sigra",
     blurb:
       "The most consistently praised name across City Hospital's reviews. Patients describe her as patient, professional, thorough and reassuring, from first consultation through delivery.",
     points: [
-      "Repeatedly recommended for maternity and delivery care",
-      "Known for clear, unhurried explanations at every step",
-      "Trusted across multiple families for gynaecology treatment",
+      "MD in Gynecology from IMS BHU, one of India's top medical institutions",
+      "Advanced Fellowship in Reproductive Medicine",
+      "Repeatedly recommended for normal & assisted deliveries",
+      "Known for clear, unhurried explanations at every step of pregnancy",
+      "Consults at City Hospital (Sigra) and Shiv Clinic (Kandwa)",
+      "Ayushman Bharat Yojana eligible patients treated free under her care",
     ],
   },
+  // Additional specialists referenced in real hospital posts
+  team: [
+    {
+      name: "Dr. Anjali Yadav",
+      role: "Gynaecology & Maternity",
+      detail: "MD (Gyn), IMS BHU · Fellowship in Reproductive Medicine",
+      highlight: true,
+    },
+    {
+      name: "Dr. Deepankar Mishra",
+      role: "Physician & Critical Care",
+      detail: "Recently joined City Hospital's multi-specialty team",
+      highlight: false,
+    },
+    {
+      name: "Dr. Saurabh Singh",
+      role: "Orthopedics",
+      detail: "Knee & fracture care, mobility rehabilitation",
+      highlight: false,
+    },
+    {
+      name: "Dr. Manjari Gupta",
+      role: "Consultant",
+      detail: "Part of City Hospital's multi-specialty OPD",
+      highlight: false,
+    },
+    {
+      name: "Dr. Vivek Tripathi",
+      role: "Consultant",
+      detail: "Part of City Hospital's multi-specialty OPD",
+      highlight: false,
+    },
+  ],
 };
 
 export type Service = {
@@ -65,32 +116,38 @@ export const services: Service[] = [
   {
     icon: Baby,
     title: "Gynaecology & Maternity",
-    desc: "Antenatal care, normal and assisted delivery, and women's health under Dr. Anjali Yadav. The hospital's most recommended specialty.",
+    desc: "Antenatal care, normal and assisted delivery, and women's health under Dr. Anjali Yadav, MD (Gyn), IMS BHU. The hospital's most recommended specialty.",
     accent: "rose",
   },
   {
     icon: Ambulance,
-    title: "Emergency Care",
-    desc: "Round-the-clock emergency response with doctors on site 24x7, ready for critical, accident and urgent care cases.",
+    title: "Emergency & Trauma Care",
+    desc: "Round-the-clock emergency response with doctors on site 24×7, ready for critical, accident and urgent care cases with a fully equipped trauma unit.",
     accent: "teal",
   },
   {
     icon: Stethoscope,
-    title: "General Surgery",
-    desc: "Minor and major surgical procedures performed in modern, well-equipped operating suites with in-patient recovery support.",
+    title: "General Surgery & Medicine",
+    desc: "Minor and major surgical procedures in modern operating theatres, supported by a multi-specialty OPD and in-patient recovery wards.",
     accent: "teal",
   },
   {
     icon: Bone,
     title: "Orthopedics",
-    desc: "Fracture management, joint and knee care, and mobility rehabilitation delivered by experienced orthopedic specialists.",
+    desc: "Fracture management, joint and knee care, and mobility rehabilitation delivered by experienced orthopedic specialists including Dr. Saurabh Singh.",
     accent: "gold",
   },
   {
     icon: Microscope,
-    title: "Diagnostics",
-    desc: "On-site lab and imaging support for accurate, timely diagnosis that feeds directly into your treatment plan.",
+    title: "Diagnostics & ICU",
+    desc: "On-site advanced diagnostic labs, imaging, ICU and operation theatres so treatment decisions happen fast, without sending patients elsewhere.",
     accent: "teal",
+  },
+  {
+    icon: HeartPulse,
+    title: "Ayushman Bharat Care",
+    desc: "Empanelled for Ayushman Bharat Yojana, offering free treatment to eligible patients so cost is never a barrier to quality care.",
+    accent: "gold",
   },
 ];
 
@@ -118,12 +175,12 @@ export const whyChoose: WhyItem[] = [
   },
   {
     icon: Building2,
-    title: "Spacious, Modern Facility",
-    desc: "Visitors describe a well-equipped, spacious setup suited to a wide range of patients and care needs under one roof.",
+    title: "Modern, Spacious Facility",
+    desc: "Multi-specialty OPD, IPD, ICU, operation theatres, pharmacy and diagnostics under one roof, suited to a wide range of patients.",
   },
   {
     icon: ShieldCheck,
-    title: "Accessible for Everyone",
+    title: "Accessible & Inclusive",
     desc: "Wheelchair-accessible parking, entrance and toilets, gender-neutral toilets, plus debit card and NFC payments for convenience.",
   },
 ];
@@ -191,11 +248,6 @@ export const reviews: Review[] = [
     text: "Praised doctor and staff behaviour; found the hospital well-suited for all types of patients.",
   },
   {
-    name: "Family F.",
-    tag: "General Care",
-    text: "Found the hospital and staff good and professional overall.",
-  },
-  {
     name: "Aditya S.",
     tag: "Facility",
     text: "Staff attentive, doctors thorough, facility spacious and well-equipped.",
@@ -210,72 +262,20 @@ export const reviews: Review[] = [
     tag: "Maternity",
     text: "Positive experience during his wife's pregnancy care at the hospital.",
   },
+  {
+    name: "Family F.",
+    tag: "General Care",
+    text: "Found the hospital and staff good and professional overall.",
+  },
 ];
 
 export const stats = [
   { label: "Google Rating", value: 3.8, suffix: "★", decimals: 1 },
   { label: "Google Reviews", value: 169, suffix: "+", decimals: 0 },
   { label: "Open", value: 24, suffix: "×7", decimals: 0 },
-  { label: "Specialties", value: 5, suffix: "+", decimals: 0 },
+  { label: "Specialties", value: 6, suffix: "+", decimals: 0 },
 ] as const;
 
-// ─── AI "Ask about this hospital" feature ───────────────────────────────
-// A single shared prompt that gets pre-filled into whichever AI assistant
-// the visitor picks. Includes every verified public detail about the
-// hospital so the AI can give a balanced, honest answer.
-export const aiPrompt = `I'm considering City Hospital in Sigra, Varanasi for care and want a balanced, honest overview. Here are the verified public details I already have:
-
-• Name: City Hospital (सिटी हॉस्पिटल)
-• Category: Multi-specialty hospital
-• Address: D64/26-K-3-P-4, Chandrika Nagar Colony, Sigra, Varanasi, Uttar Pradesh 221002
-• Phone / WhatsApp: 099360000099
-• Hours: Open 24 hours, every day
-• Google rating: 3.8 out of 5, from 169 reviews
-• Most-reviewed specialist: Dr. Anjali Yadav (Gynaecology & Maternity), repeatedly praised as patient, professional, thorough and reassuring
-• Services: Gynaecology & Maternity, General Surgery, Orthopedics (knee specialty), Emergency Care, Diagnostics
-• Accessibility: wheelchair-accessible car park, entrance and toilet; gender-neutral toilets; accepts debit cards and NFC mobile payments
-• Google Maps link: https://www.google.com/maps/search/?api=1&query=City+Hospital+Sigra+Varanasi+Chandrika+Nagar
-
-Please give me an honest, balanced summary of this hospital based on what's publicly known, including what patients say in their Google reviews, who Dr. Anjali Yadav is best suited for, and anything I should watch out for.`;
-
-export type AIPlatform = {
-  id: "chatgpt" | "claude" | "gemini" | "perplexity";
-  name: string;
-  /** Tint used in the card UI */
-  tint: string;
-  /** Where the visitor lands when they click the card (prompt is appended as ?q=) */
-  buildUrl: (prompt: string) => string;
-  /** Short tagline shown under the name */
-  tagline: string;
-};
-
-export const aiPlatforms: AIPlatform[] = [
-  {
-    id: "chatgpt",
-    name: "ChatGPT",
-    tint: "#10a37f",
-    tagline: "OpenAI · free to use without an account",
-    buildUrl: (p) => `https://chatgpt.com/?q=${encodeURIComponent(p)}`,
-  },
-  {
-    id: "claude",
-    name: "Claude",
-    tint: "#d97757",
-    tagline: "Anthropic · free tier available",
-    buildUrl: (p) => `https://claude.ai/new?q=${encodeURIComponent(p)}`,
-  },
-  {
-    id: "gemini",
-    name: "Gemini",
-    tint: "#4285f4",
-    tagline: "Google · sign in with a Google account",
-    buildUrl: (p) => `https://gemini.google.com/app?q=${encodeURIComponent(p)}`,
-  },
-  {
-    id: "perplexity",
-    name: "Perplexity",
-    tint: "#20808d",
-    tagline: "Answer engine · cites live sources",
-    buildUrl: (p) => `https://www.perplexity.ai/search?q=${encodeURIComponent(p)}`,
-  },
-];
+// Pre-filled prompt sent to AI platforms when a visitor clicks one of the
+// AI buttons. Asks the AI to summarise the hospital using its real details.
+export const aiPrompt = `Tell me everything about City Hospital in Sigra, Varanasi. Address: D64/26-K-3-P-4, Chandrika Nagar Colony, Sigra, Varanasi, Uttar Pradesh 221002. Phone: +91 99360 00099. It is a multi-specialty hospital open 24 hours, rated 3.8 stars across 169 Google reviews. The lead specialist is Dr. Anjali Yadav, Gynaecologist and Obstetrician, who holds an MD in Gynecology from IMS BHU and an Advanced Fellowship in Reproductive Medicine, with 6+ years of experience. She is widely praised in patient reviews for being patient, thorough and reassuring, especially for maternity and delivery care. The hospital offers 24×7 emergency and trauma care, general surgery, orthopedics, diagnostics, ICU, operation theatres, in-house pharmacy, and is empanelled under the Ayushman Bharat Yojana for free treatment of eligible patients. It is wheelchair accessible and accepts debit cards and NFC payments. Please summarise the hospital's strengths, the specialists, and what patients say about it.`;

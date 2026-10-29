@@ -21,7 +21,7 @@ export default function Location() {
               In the heart of <span className="gradient-text-teal">Sigra, Varanasi.</span>
             </>
           }
-          subtitle="Chandrika Nagar Colony, just off the main Sigra thoroughfare — easy to reach, day or night."
+          subtitle="Chandrika Nagar Colony, just off the main Sigra thoroughfare. Easy to reach, day or night."
         />
 
         <div className="mt-14 grid gap-6 lg:grid-cols-[1.3fr_1fr] lg:gap-8">

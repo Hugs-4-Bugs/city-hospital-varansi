@@ -28,7 +28,7 @@ export default function Footer() {
               {hospital.nameHindi}
             </div>
             <p className="mt-4 text-pretty text-sm leading-relaxed text-[var(--brand-cream)]/65">
-              {hospital.category} in Sigra, Varanasi — led by Dr. Anjali Yadav's
+              {hospital.category} in Sigra, Varanasi, led by Dr. Anjali Yadav's
               gynaecology &amp; maternity practice, open 24 hours.
             </p>
             <div className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-white/8 px-3 py-1.5 text-xs ring-1 ring-white/10">

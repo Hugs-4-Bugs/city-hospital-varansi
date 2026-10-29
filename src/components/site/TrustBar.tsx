@@ -2,33 +2,44 @@
 
 import { motion } from "framer-motion";
 import { Star, Users, Clock, Siren } from "lucide-react";
+import { hospital } from "@/lib/data";
+import StatCounter from "./StatCounter";
 
 const items = [
   {
     icon: Star,
     label: "Google Rating",
-    value: "3.8 / 5",
-    sub: "honest & verified",
+    valueRender: () => (
+      <>
+        <StatCounter value={hospital.rating} decimals={1} />
+        <span className="text-[var(--brand-gold)]"> / 5</span>
+      </>
+    ),
+    sub: "honest and verified",
     accent: "text-[var(--brand-gold)]",
   },
   {
     icon: Users,
     label: "Patient Reviews",
-    value: "169+",
+    valueRender: () => (
+      <>
+        <StatCounter value={hospital.reviewCount} suffix="+" />
+      </>
+    ),
     sub: "on Google",
     accent: "text-[var(--brand-teal)]",
   },
   {
     icon: Clock,
     label: "Open",
-    value: "24 × 7",
-    sub: "every day",
+    valueRender: () => <>24 × 7</>,
+    sub: "every day, all year",
     accent: "text-[var(--brand-teal)]",
   },
   {
     icon: Siren,
     label: "Emergency",
-    value: "Available",
+    valueRender: () => <>Available</>,
     sub: "doctors on site",
     accent: "text-rose-600",
   },
@@ -49,12 +60,19 @@ export default function TrustBar() {
               ease: [0.22, 1, 0.36, 1],
               delay: i * 0.08,
             }}
-            className="flex items-center gap-3 px-4 py-5 sm:px-7 sm:py-6"
+            whileHover={{ y: -2 }}
+            className="group relative flex cursor-default items-center gap-3 px-4 py-5 transition-colors hover:bg-white/40 sm:px-7 sm:py-6"
+            data-cursor="hover"
           >
-            <it.icon className={`h-6 w-6 shrink-0 ${it.accent}`} />
+            <motion.div
+              whileHover={{ rotate: -8, scale: 1.1 }}
+              transition={{ type: "spring", stiffness: 300, damping: 14 }}
+            >
+              <it.icon className={`h-6 w-6 shrink-0 ${it.accent}`} />
+            </motion.div>
             <div className="min-w-0">
               <div className="font-[var(--font-fraunces)] text-xl font-semibold leading-none text-[var(--brand-teal-ink)] sm:text-2xl">
-                {it.value}
+                {it.valueRender()}
               </div>
               <div className="mt-1 truncate text-xs font-medium uppercase tracking-wide text-[var(--muted-foreground)]">
                 {it.label}
@@ -65,6 +83,9 @@ export default function TrustBar() {
             </div>
           </motion.div>
         ))}
+      </div>
+      <div className="hidden text-center text-[0.7rem] text-[var(--muted-foreground)]/60 sm:block">
+        Real numbers from City Hospital's public Google listing
       </div>
     </section>
   );

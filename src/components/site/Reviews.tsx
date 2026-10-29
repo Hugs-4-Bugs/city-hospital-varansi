@@ -298,7 +298,7 @@ export default function Reviews() {
               {hospital.reviewCount}+
             </div>
             <div className="mt-2 text-sm text-[var(--brand-cream)]/75">
-              more reviews live on Google. Read what the full community says —
+              more reviews live on Google. Read what the full community says:
               the good, the mixed, everything.
             </div>
             <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-[var(--brand-gold)] px-5 py-2.5 text-sm font-semibold text-[#1a1308] transition-transform group-hover:translate-x-1">
@@ -334,7 +334,7 @@ export default function Reviews() {
           <ExternalLink className="h-4 w-4 text-[var(--muted-foreground)] transition-colors group-hover:text-[var(--brand-teal)]" />
         </a>
         <p className="mt-3 text-xs text-[var(--muted-foreground)]">
-          Opens City Hospital's Google Maps profile in a new tab — read every
+          Opens City Hospital's Google Maps profile in a new tab. Read every
           review, the good and the mixed.
         </p>
       </div>

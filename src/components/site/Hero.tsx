@@ -1,10 +1,16 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  useMotionValueEvent,
+} from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Phone, CalendarCheck, Star, Clock, ChevronDown } from "lucide-react";
+import { Phone, CalendarCheck, Star, ChevronDown, MapPin } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 import StatCounter from "./StatCounter";
 import { hospital } from "@/lib/data";
@@ -13,74 +19,52 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const word = {
-  hidden: { opacity: 0, y: 40, rotateX: -40 },
-  show: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    rotateX: 0,
-    transition: {
-      duration: 0.9,
-      delay: 0.2 + i * 0.12,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
-  }),
-};
+const headline = ["City", "Hospital"];
 
 export default function Hero() {
   const root = useRef<HTMLElement>(null);
   const bgImg = useRef<HTMLDivElement>(null);
-  const bgScale = useRef<HTMLDivElement>(null);
-  const ekgPath = useRef<SVGPathElement>(null);
-  const inView = useInView(root, { once: true });
+  const overlay = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
 
-  // GSAP scroll-scrub on hero background
-  useEffect(() => {
-    if (!root.current || !bgImg.current) return;
-    const ctx = gsap.context(() => {
-      gsap.to(bgImg.current, {
-        yPercent: 22,
-        scale: 1.12,
-        ease: "none",
-        scrollTrigger: {
-          trigger: root.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: 1,
-        },
-      });
-      gsap.to(bgScale.current, {
-        opacity: 0.55,
-        ease: "none",
-        scrollTrigger: {
-          trigger: root.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: 1,
-        },
-      });
-    }, root);
-    return () => ctx.revert();
-  }, []);
+  const [scrolled, setScrolled] = useState(false);
 
-  // anime.js EKG line draw
+  const { scrollYProgress } = useScroll({
+    target: root,
+    offset: ["start start", "end start"],
+  });
+
+  // Parallax via useTransform + spring
+  const yImg = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+  const yImgSpring = useSpring(yImg, { stiffness: 120, damping: 30, mass: 0.4 });
+  const scaleImg = useTransform(scrollYProgress, [0, 1], [1.05, 1.18]);
+  const overlayOpacity = useTransform(scrollYProgress, [0, 1], [0.55, 0.92]);
+  const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "60%"]);
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    setScrolled(v > 0.05);
+  });
+
+  // anime.js EKG line draw on mount
   useEffect(() => {
-    if (!inView || !ekgPath.current) return;
-    const len = ekgPath.current.getTotalLength();
-    ekgPath.current.style.strokeDasharray = `${len}`;
-    ekgPath.current.style.strokeDashoffset = `${len}`;
+    const path = root.current?.querySelector(".ekg-path") as SVGPathElement | null;
+    if (!path) return;
+    const len = path.getTotalLength();
+    path.style.strokeDasharray = `${len}`;
+    path.style.strokeDashoffset = `${len}`;
     let raf = 0;
     const start = performance.now();
     const dur = 2600;
     const tick = (now: number) => {
       const t = Math.min(1, (now - start) / dur);
       const eased = 1 - Math.pow(1 - t, 3);
-      ekgPath.current!.style.strokeDashoffset = `${len * (1 - eased)}`;
+      if (path) path.style.strokeDashoffset = `${len * (1 - eased)}`;
       if (t < 1) raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [inView]);
+  }, []);
 
   return (
     <section
@@ -88,28 +72,38 @@ export default function Hero() {
       className="relative min-h-[100svh] w-full overflow-hidden bg-[var(--brand-teal-ink)] text-[var(--brand-cream)]"
     >
       {/* Parallax image layer */}
-      <div
+      <motion.div
         ref={bgImg}
-        className="absolute inset-0 -z-10 scale-105 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=2000&q=80')",
-        }}
+        style={{ y: yImgSpring, scale: scaleImg }}
+        className="absolute inset-0 -z-10 bg-cover bg-center"
         aria-hidden
-      />
-      {/* Gradient + darken overlay */}
-      <div
-        ref={bgScale}
+      >
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=2000&q=80')",
+          }}
+        />
+      </motion.div>
+
+      {/* Gradient overlay (scroll-fades) */}
+      <motion.div
+        ref={overlay}
+        style={{ opacity: overlayOpacity }}
         className="absolute inset-0 -z-10"
-        style={{
-          background:
-            "radial-gradient(120% 90% at 70% 10%, rgba(14,107,102,0.55) 0%, rgba(6,35,31,0.92) 55%, rgba(6,35,31,0.98) 100%)",
-        }}
         aria-hidden
-      />
-      {/* Grain */}
-      <div className="absolute inset-0 -z-10 bg-grain opacity-40" aria-hidden />
-      {/* Floating glow blobs */}
+      >
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(120% 90% at 70% 10%, rgba(14,107,102,0.55) 0%, rgba(6,35,31,0.92) 55%, rgba(6,35,31,0.98) 100%)",
+          }}
+        />
+      </motion.div>
+
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-grain opacity-40" aria-hidden />
       <div className="pointer-events-none absolute -left-32 top-24 -z-10 h-72 w-72 rounded-full bg-[var(--brand-gold)]/20 blur-3xl animate-drift" aria-hidden />
       <div className="pointer-events-none absolute right-0 top-1/3 -z-10 h-80 w-80 rounded-full bg-[var(--brand-teal)]/30 blur-3xl animate-float-slow" aria-hidden />
 
@@ -132,19 +126,30 @@ export default function Hero() {
             <Star className="h-3.5 w-3.5 fill-[var(--brand-gold)] text-[var(--brand-gold)]" />
             {hospital.rating} · {hospital.reviewCount} Google reviews
           </span>
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-medium text-[var(--brand-cream)]/80 ring-1 ring-white/15">
+            <MapPin className="h-3.5 w-3.5" />
+            Sigra, Varanasi
+          </span>
         </motion.div>
 
-        {/* Headline */}
-        <h1 className="mt-6 font-[var(--font-fraunces)] text-5xl font-light leading-[0.95] tracking-tight sm:text-7xl lg:text-8xl">
+        {/* Headline with parallax on scroll */}
+        <motion.h1
+          ref={titleRef}
+          style={{ y: titleY, opacity: titleOpacity }}
+          className="mt-6 font-[var(--font-fraunces)] text-5xl font-light leading-[0.95] tracking-tight sm:text-7xl lg:text-[8rem]"
+        >
           <span className="block overflow-hidden">
-            {["City", "Hospital"].map((w, i) => (
+            {headline.map((w, i) => (
               <motion.span
                 key={w}
-                custom={i}
-                variants={word}
-                initial="hidden"
-                animate="show"
-                className="mr-4 inline-block bg-gradient-to-b from-white via-[#fdf8ec] to-[#e4cf9a] bg-clip-text text-transparent [perspective:600px]"
+                initial={{ y: "110%", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{
+                  duration: 1,
+                  delay: 0.2 + i * 0.12,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="mr-4 inline-block gradient-text-cream [perspective:600px]"
               >
                 {w}
               </motion.span>
@@ -158,7 +163,7 @@ export default function Hero() {
           >
             {hospital.nameHindi}
           </motion.span>
-        </h1>
+        </motion.h1>
 
         {/* Tagline */}
         <motion.p
@@ -167,12 +172,12 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
           className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-[var(--brand-cream)]/80 sm:text-lg"
         >
-          Multi-specialty care in the heart of Sigra, Varanasi — led by{" "}
+          Multi-specialty care in the heart of Sigra, led by{" "}
           <span className="font-semibold text-[var(--brand-gold-soft)]">
             Dr. Anjali Yadav
           </span>
           's gynaecology & maternity practice, with round-the-clock emergency,
-          surgery and orthopedics.
+          surgery, orthopedics and ICU support.
         </motion.p>
 
         {/* CTAs */}
@@ -186,7 +191,7 @@ export default function Hero() {
             href={`tel:${hospital.phoneTel}`}
             variant="gold"
             className="px-7 py-4 text-base"
-            ariaLabel="Book an appointment — call City Hospital"
+            ariaLabel="Book an appointment, call City Hospital"
           >
             <CalendarCheck className="h-5 w-5" />
             Book an Appointment
@@ -213,7 +218,7 @@ export default function Hero() {
             { v: 3.8, d: 1, s: "★", l: "Google Rating" },
             { v: 169, d: 0, s: "+", l: "Reviews" },
             { v: 24, d: 0, s: "×7", l: "Always Open" },
-            { v: 5, d: 0, s: "+", l: "Specialties" },
+            { v: 6, d: 0, s: "+", l: "Specialties" },
           ].map((st) => (
             <div
               key={st.l}
@@ -239,7 +244,7 @@ export default function Hero() {
           aria-hidden
         >
           <path
-            ref={ekgPath}
+            className="ekg-path"
             d="M0,50 H320 L360,50 L380,20 L410,80 L440,50 H600 L640,50 L660,12 L690,88 L720,50 H900 L940,50 L960,24 L990,76 L1020,50 H1440"
             fill="none"
             stroke="var(--brand-gold)"
@@ -253,8 +258,8 @@ export default function Hero() {
       {/* Scroll cue */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.6, duration: 1 }}
+        animate={{ opacity: scrolled ? 0 : 1 }}
+        transition={{ duration: 0.4 }}
         className="absolute bottom-5 left-1/2 -translate-x-1/2 text-[var(--brand-cream)]/60"
       >
         <motion.div
