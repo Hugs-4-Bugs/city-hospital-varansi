@@ -131,8 +131,8 @@ export default function Hero() {
           className="mt-6 font-[var(--font-fraunces)] text-5xl font-light leading-[0.95] tracking-tight sm:text-7xl lg:text-[8rem]"
         >
           <span className="flex flex-wrap items-baseline gap-x-[0.35em] sm:gap-x-[0.4em]">
-            <SplitText text="City" delay={0.2} stagger={0.06} className="block" />
-            <SplitText text="Hospital" delay={0.32} stagger={0.045} className="block" />
+            <SplitText text="City" delay={0.2} stagger={0.06} className="block" inView={false} />
+            <SplitText text="Hospital" delay={0.32} stagger={0.045} className="block" inView={false} />
           </span>
           <motion.span
             initial={{ opacity: 0, y: 20 }}

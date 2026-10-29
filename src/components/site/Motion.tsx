@@ -19,14 +19,26 @@ export function SplitText({
   delay = 0,
   stagger = 0.035,
   once = true,
+  inView = true,
 }: {
   text: string;
   className?: string;
   delay?: number;
   stagger?: number;
   once?: boolean;
+  inView?: boolean;
 }) {
   const chars = text.split("");
+  const animateProps = inView
+    ? {
+        initial: { y: "110%" },
+        whileInView: { y: 0 },
+        viewport: { once, margin: "-60px" },
+      }
+    : {
+        initial: { y: "110%" },
+        animate: { y: 0 },
+      };
   return (
     <span className={`inline-block overflow-hidden align-bottom ${className}`}>
       {chars.map((c, i) => (
@@ -37,9 +49,7 @@ export function SplitText({
         >
           <motion.span
             className="inline-block"
-            initial={{ y: "110%" }}
-            whileInView={{ y: 0 }}
-            viewport={{ once, margin: "-60px" }}
+            {...animateProps}
             transition={{
               duration: 0.7,
               delay: delay + i * stagger,

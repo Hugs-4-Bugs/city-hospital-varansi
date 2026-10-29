@@ -4,6 +4,7 @@ import Header from "@/components/site/Header";
 import Hero from "@/components/site/Hero";
 import TrustBar from "@/components/site/TrustBar";
 import Specialist from "@/components/site/Specialist";
+import MaternityShowcase from "@/components/site/MaternityShowcase";
 import Facilities from "@/components/site/Facilities";
 import Services from "@/components/site/Services";
 import CinematicPin from "@/components/site/CinematicPin";
@@ -26,6 +27,7 @@ export default function Home() {
           <Hero />
           <TrustBar />
           <Specialist />
+          <MaternityShowcase />
           <Facilities />
           <Services />
           <CinematicPin />
