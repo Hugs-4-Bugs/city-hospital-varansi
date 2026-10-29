@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, ArrowRight, X, Check } from "lucide-react";
+import { useState, useRef } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { Sparkles, ArrowUpRight, X, Loader2 } from "lucide-react";
 import { hospital, aiPrompt } from "@/lib/data";
 
 type AIPlatform = {
@@ -20,37 +20,37 @@ const platforms: AIPlatform[] = [
     id: "chatgpt",
     name: "ChatGPT",
     color: "#10a37f",
-    bg: "rgba(16,163,127,0.1)",
+    bg: "rgba(16,163,127,0.12)",
     textColor: "#0d7d63",
     url: (p) => `https://chat.openai.com/?q=${encodeURIComponent(p)}`,
-    note: "Works without an account on mobile/web",
+    note: "Works without an account",
   },
   {
     id: "gemini",
     name: "Gemini",
     color: "#4285f4",
-    bg: "rgba(66,133,244,0.1)",
+    bg: "rgba(66,133,244,0.12)",
     textColor: "#1a56c4",
     url: (p) => `https://gemini.google.com/app?prompt=${encodeURIComponent(p)}`,
-    note: "May ask you to sign in with Google",
+    note: "Google sign-in may be asked",
   },
   {
     id: "claude",
     name: "Claude",
     color: "#d97757",
-    bg: "rgba(217,119,87,0.12)",
+    bg: "rgba(217,119,87,0.14)",
     textColor: "#a04a2e",
     url: (p) => `https://claude.ai/new?q=${encodeURIComponent(p)}`,
-    note: "Free account needed to chat",
+    note: "Free account needed",
   },
   {
     id: "perplexity",
     name: "Perplexity",
     color: "#20808d",
-    bg: "rgba(32,128,141,0.12)",
+    bg: "rgba(32,128,141,0.14)",
     textColor: "#155962",
     url: (p) => `https://www.perplexity.ai/search?q=${encodeURIComponent(p)}`,
-    note: "Searches the web live, no account needed",
+    note: "Live web search, no login",
   },
 ];
 
@@ -86,168 +86,202 @@ function PlatformIcon({ id, className = "" }: { id: string; className?: string }
 }
 
 export default function AIPromptBar() {
-  const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState<AIPlatform | null>(null);
+  const [launching, setLaunching] = useState<AIPlatform | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const reduce = useReducedMotion();
+  const containerRef = useRef<HTMLDivElement>(null);
 
+  // Launch directly to the AI platform. The prompt is sent in the URL query
+  // string, so the user lands on the AI with the prompt already typed in.
+  // The prompt text itself is never rendered visibly on the page.
   const launch = (platform: AIPlatform) => {
-    setSelected(platform);
-    // open in new tab; AI platform handles login if needed
+    setLaunching(platform);
     window.open(platform.url(aiPrompt), "_blank", "noopener,noreferrer");
-    setTimeout(() => setOpen(false), 1200);
+    setTimeout(() => setLaunching(null), 1600);
+    setMobileOpen(false);
   };
 
   return (
     <section
       id="ask-ai"
-      className="relative overflow-hidden bg-[var(--brand-teal-ink)] py-16 text-[var(--brand-cream)] sm:py-20"
+      className="relative overflow-hidden bg-[var(--brand-teal-ink)] py-20 text-[var(--brand-cream)] sm:py-28"
     >
-      {/* bg */}
+      {/* animated bg */}
       <div className="pointer-events-none absolute inset-0 bg-grain opacity-20" aria-hidden />
-      <div className="pointer-events-none absolute -left-20 top-0 h-72 w-72 rounded-full bg-[var(--brand-teal)]/40 blur-3xl animate-drift" aria-hidden />
-      <div className="pointer-events-none absolute -right-10 bottom-0 h-80 w-80 rounded-full bg-[var(--brand-gold)]/15 blur-3xl animate-float-slow" aria-hidden />
+      <motion.div
+        className="pointer-events-none absolute -left-20 top-0 h-72 w-72 rounded-full bg-[var(--brand-teal)]/40 blur-3xl"
+        animate={reduce ? {} : { x: [0, 30, 0], y: [0, -20, 0] }}
+        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+        aria-hidden
+      />
+      <motion.div
+        className="pointer-events-none absolute -right-10 bottom-0 h-80 w-80 rounded-full bg-[var(--brand-gold)]/15 blur-3xl"
+        animate={reduce ? {} : { x: [0, -24, 0], y: [0, 24, 0] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+        aria-hidden
+      />
 
-      <div className="relative mx-auto max-w-5xl px-5 sm:px-8 lg:px-12">
+      <div ref={containerRef} className="relative mx-auto max-w-5xl px-5 sm:px-8 lg:px-12">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="text-center"
         >
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-gold-soft)] ring-1 ring-white/15">
-            <Sparkles className="h-3.5 w-3.5" />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 220, damping: 18 }}
+            className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-gold-soft)] ring-1 ring-white/15"
+          >
+            <motion.span
+              animate={reduce ? {} : { rotate: [0, 15, -15, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <Sparkles className="h-3.5 w-3.5" />
+            </motion.span>
             Ask AI about us
-          </div>
-          <h2 className="text-balance font-[var(--font-fraunces)] text-3xl font-light leading-[1.1] sm:text-4xl lg:text-5xl">
+          </motion.div>
+
+          <h2 className="text-balance font-[var(--font-fraunces)] text-3xl font-light leading-[1.1] sm:text-4xl lg:text-6xl">
             Want a second opinion?{" "}
             <span className="gradient-text-gold">Ask any AI about City Hospital.</span>
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-pretty text-base leading-relaxed text-[var(--brand-cream)]/75 sm:text-lg">
-            We've prepared a detailed prompt with our real address, phone, rating,
-            specialists and patient reviews. Pick your favourite AI and just hit
-            send. No typing needed.
+            Tap your favourite AI below. We'll open it with everything already
+            typed: our address, phone, rating, specialists and what patients say.
+            Just hit send to get a complete, AI-researched summary of City Hospital.
           </p>
         </motion.div>
 
-        {/* Prompt preview */}
+        {/* Platform launch cards (no prompt visible anywhere) */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial="hidden"
+          whileInView="show"
           viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto mt-9 max-w-3xl"
+          variants={{
+            hidden: {},
+            show: { transition: { staggerChildren: 0.08, delayChildren: 0.2 } },
+          }}
+          className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4"
         >
-          <div className="rounded-2xl bg-white/[0.04] p-4 ring-1 ring-white/10 sm:p-5">
-            <div className="mb-2 flex items-center justify-between">
-              <span className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-[var(--brand-gold-soft)]/70">
-                Pre-filled prompt
-              </span>
-              <button
-                onClick={() => setOpen(true)}
-                className="text-[0.7rem] font-semibold uppercase tracking-wide text-[var(--brand-gold-soft)] transition-opacity hover:opacity-70"
-              >
-                Tap a platform to send →
-              </button>
-            </div>
-            <p className="max-h-24 overflow-y-auto text-pretty text-[0.82rem] leading-relaxed text-[var(--brand-cream)]/65 no-scrollbar">
-              {aiPrompt}
-            </p>
-          </div>
-        </motion.div>
-
-        {/* Platform buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto mt-7 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4"
-        >
-          {platforms.map((p, i) => (
+          {platforms.map((p) => (
             <motion.button
               key={p.id}
               onClick={() => launch(p)}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 + i * 0.06 }}
-              whileHover={{ y: -4, scale: 1.02 }}
-              whileTap={{ scale: 0.97 }}
-              className="group relative flex flex-col items-center gap-2 overflow-hidden rounded-2xl bg-white/[0.05] p-4 ring-1 ring-white/10 transition-colors hover:bg-white/[0.09] sm:p-5"
+              variants={{
+                hidden: { opacity: 0, y: 20, scale: 0.95 },
+                show: {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+                },
+              }}
+              whileHover={{ y: -6, scale: 1.03 }}
+              whileTap={{ scale: 0.96 }}
+              className="group relative flex flex-col items-center gap-2.5 overflow-hidden rounded-2xl bg-white/[0.05] p-4 text-center ring-1 ring-white/10 transition-colors hover:bg-white/[0.1] sm:p-5"
               data-cursor="hover"
+              aria-label={`Ask ${p.name} about City Hospital`}
             >
+              {/* glow on hover */}
+              <motion.span
+                className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                style={{
+                  background: `radial-gradient(circle at 50% 0%, ${p.bg} 0%, transparent 70%)`,
+                }}
+                aria-hidden
+              />
               <motion.div
-                whileHover={{ rotate: 12, scale: 1.1 }}
-                transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                className="flex h-10 w-10 items-center justify-center rounded-xl"
+                whileHover={{ rotate: [0, -10, 10, 0], scale: 1.12 }}
+                transition={{ duration: 0.5 }}
+                className="flex h-11 w-11 items-center justify-center rounded-xl"
                 style={{ background: p.bg, color: p.color }}
               >
                 <PlatformIcon id={p.id} className="h-6 w-6" />
               </motion.div>
-              <span className="text-sm font-semibold text-[var(--brand-cream)]">
+              <span className="relative text-sm font-semibold text-[var(--brand-cream)]">
                 {p.name}
               </span>
-              <span className="text-center text-[0.65rem] leading-snug text-[var(--brand-cream)]/50">
+              <span className="relative text-[0.65rem] leading-snug text-[var(--brand-cream)]/50">
                 {p.note}
               </span>
-              <ArrowRight className="absolute right-3 top-3 h-3.5 w-3.5 text-[var(--brand-gold-soft)] opacity-0 transition-opacity group-hover:opacity-100" />
+              <ArrowUpRight className="absolute right-2.5 top-2.5 h-3.5 w-3.5 text-[var(--brand-gold-soft)] opacity-0 transition-opacity group-hover:opacity-100" />
             </motion.button>
           ))}
         </motion.div>
+
+        {/* Mobile fallback trigger (hidden on desktop) */}
+        <div className="mt-6 text-center sm:hidden">
+          <button
+            onClick={() => setMobileOpen(true)}
+            className="inline-flex items-center gap-2 rounded-full bg-[var(--brand-gold)] px-5 py-2.5 text-sm font-semibold text-[#1a1308]"
+          >
+            <Sparkles className="h-4 w-4" />
+            Choose your AI
+          </button>
+        </div>
       </div>
 
-      {/* Confirmation toast */}
+      {/* Launching toast */}
       <AnimatePresence>
-        {selected && (
+        {launching && (
           <motion.div
-            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            initial={{ opacity: 0, y: 40, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="fixed bottom-6 left-1/2 z-[200] -translate-x-1/2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-[var(--brand-teal-ink)] shadow-lift"
+            transition={{ type: "spring", stiffness: 280, damping: 24 }}
+            className="fixed bottom-6 left-1/2 z-[200] -translate-x-1/2"
           >
-            <span className="inline-flex items-center gap-2">
-              <Check className="h-4 w-4 text-emerald-600" />
-              Opening {selected.name} in a new tab
-            </span>
+            <div className="flex items-center gap-3 rounded-full bg-white px-5 py-3 shadow-lift">
+              <div
+                className="flex h-7 w-7 items-center justify-center rounded-full"
+                style={{ background: launching.bg, color: launching.color }}
+              >
+                <PlatformIcon id={launching.id} className="h-4 w-4" />
+              </div>
+              <div className="text-sm font-semibold text-[var(--brand-teal-ink)]">
+                Opening {launching.name}...
+              </div>
+              <Loader2 className="h-4 w-4 animate-spin text-[var(--brand-teal)]" />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Mobile info modal */}
+      {/* Mobile platform sheet */}
       <AnimatePresence>
-        {open && !selected && (
+        {mobileOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setOpen(false)}
-            className="fixed inset-0 z-[150] flex items-end justify-center bg-black/50 p-4 backdrop-blur-sm sm:items-center"
+            onClick={() => setMobileOpen(false)}
+            className="fixed inset-0 z-[150] flex items-end justify-center bg-black/60 backdrop-blur-sm sm:hidden"
           >
             <motion.div
-              initial={{ y: 40, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 40, opacity: 0 }}
-              transition={{ type: "spring", stiffness: 280, damping: 26 }}
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{ type: "spring", stiffness: 280, damping: 28 }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-md rounded-3xl bg-[var(--brand-teal-ink)] p-6 text-[var(--brand-cream)] ring-1 ring-white/10"
+              className="w-full rounded-t-3xl bg-[var(--brand-teal-ink)] p-6 text-[var(--brand-cream)] ring-1 ring-white/10"
             >
+              <div className="mx-auto mb-4 h-1 w-12 rounded-full bg-white/20" />
               <div className="mb-4 flex items-center justify-between">
                 <h3 className="font-[var(--font-fraunces)] text-xl font-medium">
                   Pick an AI to ask
                 </h3>
                 <button
-                  onClick={() => setOpen(false)}
+                  onClick={() => setMobileOpen(false)}
                   aria-label="Close"
                   className="rounded-full p-1.5 text-[var(--brand-cream)]/60 hover:bg-white/10 hover:text-white"
                 >
                   <X className="h-5 w-5" />
                 </button>
               </div>
-              <p className="mb-4 text-sm text-[var(--brand-cream)]/70">
-                We'll open the AI with a ready-to-send prompt containing City
-                Hospital's full details. Just press send.
-              </p>
               <div className="space-y-2">
                 {platforms.map((p) => (
                   <button
@@ -267,7 +301,7 @@ export default function AIPromptBar() {
                         {p.note}
                       </div>
                     </div>
-                    <ArrowRight className="h-4 w-4 text-[var(--brand-gold-soft)]" />
+                    <ArrowUpRight className="h-4 w-4 text-[var(--brand-gold-soft)]" />
                   </button>
                 ))}
               </div>

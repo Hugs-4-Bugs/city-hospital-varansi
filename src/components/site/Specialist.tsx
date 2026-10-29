@@ -55,18 +55,16 @@ export default function Specialist() {
               >
                 <div
                   className="absolute inset-0 bg-cover bg-center"
-                  style={{
-                    backgroundImage:
-                      "url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=1200&q=80')",
-                  }}
-                  aria-hidden
+                  style={{ backgroundImage: `url(${hospital.specialist.image})` }}
+                  role="img"
+                  aria-label={`Portrait of ${hospital.specialist.name}, ${hospital.specialist.specialty}`}
                 />
               </motion.div>
               <div
                 className="absolute inset-0"
                 style={{
                   background:
-                    "linear-gradient(180deg, rgba(6,35,31,0.05) 0%, rgba(6,35,31,0.15) 45%, rgba(6,35,31,0.88) 100%)",
+                    "linear-gradient(180deg, rgba(6,35,31,0) 0%, rgba(6,35,31,0) 50%, rgba(6,35,31,0.85) 100%)",
                 }}
                 aria-hidden
               />
