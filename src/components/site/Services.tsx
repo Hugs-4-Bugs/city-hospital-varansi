@@ -43,11 +43,11 @@ function TiltCard({ service, index }: { service: Service; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [8, -8]), {
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [10, -10]), {
     stiffness: 200,
     damping: 18,
   });
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-8, 8]), {
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-10, 10]), {
     stiffness: 200,
     damping: 18,
   });
@@ -68,33 +68,35 @@ function TiltCard({ service, index }: { service: Service; index: number }) {
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 60, rotateX: -15, scale: 0.9 }}
+      whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
       viewport={{ once: true, margin: "-70px" }}
       transition={{
-        duration: 0.65,
+        duration: 0.8,
         ease: [0.22, 1, 0.36, 1],
-        delay: index * 0.08,
+        delay: index * 0.1,
       }}
       className="perspective-1000"
+      data-cursor="hover"
     >
       <motion.div
         ref={ref}
         onMouseMove={handleMove}
         onMouseLeave={reset}
         style={{ rotateX, rotateY }}
-        className={`group relative h-full overflow-hidden rounded-2xl bg-white p-6 ring-1 ring-[var(--brand-teal)]/8 transition-shadow duration-300 ${a.ring} ${a.glow} preserve-3d sm:p-7`}
-        data-cursor="hover"
+        className={`group relative h-full overflow-hidden rounded-2xl bg-white p-6 ring-1 ring-[var(--brand-teal)]/8 transition-shadow duration-300 ${a.ring} ${a.glow} preserve-3d`}
       >
         <div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[var(--brand-gold)]/0 blur-2xl transition-all duration-500 group-hover:bg-[var(--brand-gold)]/15" />
 
         <div className="relative" style={{ transform: "translateZ(40px)" }}>
           <div className="flex items-start justify-between">
-            <div
+            <motion.div
+              whileHover={{ rotate: -8, scale: 1.1 }}
+              transition={{ type: "spring", stiffness: 300, damping: 14 }}
               className={`flex h-14 w-14 items-center justify-center rounded-xl ${a.bg} ring-1 ring-current/10`}
             >
               <DrawIcon icon={service.icon} size={26} />
-            </div>
+            </motion.div>
             <ArrowUpRight className="h-5 w-5 text-[var(--muted-foreground)] opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
           </div>
 
@@ -108,7 +110,13 @@ function TiltCard({ service, index }: { service: Service; index: number }) {
           <div
             className={`mt-5 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide ${a.text}`}
           >
-            <span className={`h-px w-6 ${a.dot} opacity-40`} />
+            <motion.span
+              initial={{ width: 0 }}
+              whileInView={{ width: "1.5rem" }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+              className={`h-px ${a.dot} opacity-40`}
+            />
             Available now
           </div>
         </div>
@@ -142,11 +150,11 @@ export default function Services() {
           {/* CTA tile */}
           <motion.a
             href={`tel:${hospital.phoneTel}`}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 60, scale: 0.9 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: "-70px" }}
-            transition={{ duration: 0.65, delay: services.length * 0.08 }}
-            whileHover={{ y: -4 }}
+            transition={{ duration: 0.8, delay: services.length * 0.1, ease: [0.22, 1, 0.36, 1] }}
+            whileHover={{ y: -6, scale: 1.02 }}
             className="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-[var(--brand-teal-ink)] p-7 text-[var(--brand-cream)] ring-1 ring-white/10 transition-all duration-300"
             data-cursor="hover"
           >

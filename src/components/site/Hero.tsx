@@ -8,25 +8,14 @@ import {
   useSpring,
   useMotionValueEvent,
 } from "framer-motion";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Phone, CalendarCheck, Star, ChevronDown, MapPin } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 import StatCounter from "./StatCounter";
+import { SplitText, Reveal } from "./Motion";
 import { hospital } from "@/lib/data";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
-
-const headline = ["City", "Hospital"];
 
 export default function Hero() {
   const root = useRef<HTMLElement>(null);
-  const bgImg = useRef<HTMLDivElement>(null);
-  const overlay = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-
   const [scrolled, setScrolled] = useState(false);
 
   const { scrollYProgress } = useScroll({
@@ -34,13 +23,16 @@ export default function Hero() {
     offset: ["start start", "end start"],
   });
 
-  // Parallax via useTransform + spring
-  const yImg = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+  // Multi-layer parallax — each layer moves at a different speed
+  const yImg = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const yImgSpring = useSpring(yImg, { stiffness: 120, damping: 30, mass: 0.4 });
-  const scaleImg = useTransform(scrollYProgress, [0, 1], [1.05, 1.18]);
-  const overlayOpacity = useTransform(scrollYProgress, [0, 1], [0.55, 0.92]);
-  const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "60%"]);
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+  const scaleImg = useTransform(scrollYProgress, [0, 1], [1.05, 1.25]);
+  const overlayOpacity = useTransform(scrollYProgress, [0, 1], [0.5, 0.95]);
+  const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "80%"]);
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const titleScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.92]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
     setScrolled(v > 0.05);
@@ -73,9 +65,8 @@ export default function Hero() {
     >
       {/* Parallax image layer */}
       <motion.div
-        ref={bgImg}
         style={{ y: yImgSpring, scale: scaleImg }}
-        className="absolute inset-0 -z-10 bg-cover bg-center"
+        className="absolute inset-0 -z-10"
         aria-hidden
       >
         <div
@@ -87,9 +78,8 @@ export default function Hero() {
         />
       </motion.div>
 
-      {/* Gradient overlay (scroll-fades) */}
+      {/* Gradient overlay */}
       <motion.div
-        ref={overlay}
         style={{ opacity: overlayOpacity }}
         className="absolute inset-0 -z-10"
         aria-hidden
@@ -107,7 +97,10 @@ export default function Hero() {
       <div className="pointer-events-none absolute -left-32 top-24 -z-10 h-72 w-72 rounded-full bg-[var(--brand-gold)]/20 blur-3xl animate-drift" aria-hidden />
       <div className="pointer-events-none absolute right-0 top-1/3 -z-10 h-80 w-80 rounded-full bg-[var(--brand-teal)]/30 blur-3xl animate-float-slow" aria-hidden />
 
-      <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-center px-5 pb-16 pt-28 sm:px-8 sm:pt-32 lg:px-12">
+      <motion.div
+        style={{ y: contentY, opacity: contentOpacity }}
+        className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-center px-5 pb-16 pt-28 sm:px-8 sm:pt-32 lg:px-12"
+      >
         {/* Badge row */}
         <motion.div
           initial={{ opacity: 0, y: 18 }}
@@ -132,28 +125,15 @@ export default function Hero() {
           </span>
         </motion.div>
 
-        {/* Headline with parallax on scroll */}
+        {/* Headline with split-text + parallax on scroll */}
         <motion.h1
-          ref={titleRef}
-          style={{ y: titleY, opacity: titleOpacity }}
+          style={{ y: titleY, opacity: titleOpacity, scale: titleScale }}
           className="mt-6 font-[var(--font-fraunces)] text-5xl font-light leading-[0.95] tracking-tight sm:text-7xl lg:text-[8rem]"
         >
           <span className="block overflow-hidden">
-            {headline.map((w, i) => (
-              <motion.span
-                key={w}
-                initial={{ y: "110%", opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{
-                  duration: 1,
-                  delay: 0.2 + i * 0.12,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                className="mr-4 inline-block gradient-text-cream [perspective:600px]"
-              >
-                {w}
-              </motion.span>
-            ))}
+            <SplitText text="City" delay={0.2} stagger={0.06} />
+            <span className="mx-3 inline-block" />
+            <SplitText text="Hospital" delay={0.32} stagger={0.045} />
           </span>
           <motion.span
             initial={{ opacity: 0, y: 20 }}
@@ -166,25 +146,22 @@ export default function Hero() {
         </motion.h1>
 
         {/* Tagline */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-[var(--brand-cream)]/80 sm:text-lg"
-        >
-          Multi-specialty care in the heart of Sigra, led by{" "}
-          <span className="font-semibold text-[var(--brand-gold-soft)]">
-            Dr. Anjali Yadav
-          </span>
-          's gynaecology & maternity practice, with round-the-clock emergency,
-          surgery, orthopedics and ICU support.
-        </motion.p>
+        <Reveal variant="slide" direction="up" delay={0.9}>
+          <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-[var(--brand-cream)]/80 sm:text-lg">
+            Multi-specialty care in the heart of Sigra, led by{" "}
+            <span className="font-semibold text-[var(--brand-gold-soft)]">
+              Dr. Anjali Yadav
+            </span>
+            's gynaecology & maternity practice, with round-the-clock emergency,
+            surgery, orthopedics and ICU support.
+          </p>
+        </Reveal>
 
         {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.0, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8, delay: 1.05, ease: [0.22, 1, 0.36, 1] }}
           className="mt-9 flex flex-wrap items-center gap-3 sm:gap-4"
         >
           <MagneticButton
@@ -211,7 +188,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.15, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
           className="mt-12 grid w-full max-w-2xl grid-cols-2 gap-px overflow-hidden rounded-2xl bg-white/10 ring-1 ring-white/15 sm:grid-cols-4"
         >
           {[
@@ -233,7 +210,7 @@ export default function Hero() {
             </div>
           ))}
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* EKG line at bottom */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 w-full opacity-50">

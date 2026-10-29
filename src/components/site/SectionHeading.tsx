@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
+import { SplitText } from "./Motion";
 
 type Props = {
   eyebrow?: string;
@@ -25,8 +26,8 @@ export default function SectionHeading({
     <div className={`${alignClass} max-w-3xl ${className}`}>
       {eyebrow && (
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 16, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className={`mb-4 inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] ${
@@ -35,15 +36,21 @@ export default function SectionHeading({
               : "bg-[var(--brand-teal)]/8 text-[var(--brand-teal-deep)] ring-1 ring-[var(--brand-teal)]/12"
           }`}
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-[var(--brand-gold)]" />
+          <motion.span
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 400, damping: 15, delay: 0.2 }}
+            className="h-1.5 w-1.5 rounded-full bg-[var(--brand-gold)]"
+          />
           {eyebrow}
         </motion.div>
       )}
       <motion.h2
-        initial={{ opacity: 0, y: 24 }}
+        initial={{ opacity: 0, y: 28 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
         className={`text-balance text-3xl leading-[1.08] sm:text-4xl md:text-5xl ${
           dark ? "text-[var(--brand-cream)]" : "text-[var(--brand-teal-ink)]"
         }`}
@@ -55,7 +62,7 @@ export default function SectionHeading({
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
           className={`mt-5 text-pretty text-base leading-relaxed sm:text-lg ${
             dark ? "text-[var(--brand-cream)]/75" : "text-[var(--muted-foreground)]"
           }`}

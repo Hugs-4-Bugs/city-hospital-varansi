@@ -52,28 +52,34 @@ export default function TrustBar() {
         {items.map((it, i) => (
           <motion.div
             key={it.label}
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 30, scale: 0.9 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{
-              duration: 0.6,
+              duration: 0.7,
               ease: [0.22, 1, 0.36, 1],
-              delay: i * 0.08,
+              delay: i * 0.1,
             }}
-            whileHover={{ y: -2 }}
+            whileHover={{ y: -4, scale: 1.03 }}
             className="group relative flex cursor-default items-center gap-3 px-4 py-5 transition-colors hover:bg-white/40 sm:px-7 sm:py-6"
             data-cursor="hover"
           >
             <motion.div
-              whileHover={{ rotate: -8, scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 300, damping: 14 }}
+              whileHover={{ rotate: -12, scale: 1.2 }}
+              transition={{ type: "spring", stiffness: 300, damping: 12 }}
             >
               <it.icon className={`h-6 w-6 shrink-0 ${it.accent}`} />
             </motion.div>
             <div className="min-w-0">
-              <div className="font-[var(--font-fraunces)] text-xl font-semibold leading-none text-[var(--brand-teal-ink)] sm:text-2xl">
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 + 0.3 }}
+                className="font-[var(--font-fraunces)] text-xl font-semibold leading-none text-[var(--brand-teal-ink)] sm:text-2xl"
+              >
                 {it.valueRender()}
-              </div>
+              </motion.div>
               <div className="mt-1 truncate text-xs font-medium uppercase tracking-wide text-[var(--muted-foreground)]">
                 {it.label}
               </div>

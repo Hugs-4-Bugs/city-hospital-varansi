@@ -1,10 +1,12 @@
 import SmoothScroll from "@/components/site/SmoothScroll";
+import { ScrollProgress } from "@/components/site/Motion";
 import Header from "@/components/site/Header";
 import Hero from "@/components/site/Hero";
 import TrustBar from "@/components/site/TrustBar";
 import Specialist from "@/components/site/Specialist";
 import Facilities from "@/components/site/Facilities";
 import Services from "@/components/site/Services";
+import CinematicPin from "@/components/site/CinematicPin";
 import WhyChoose from "@/components/site/WhyChoose";
 import Team from "@/components/site/Team";
 import Reviews from "@/components/site/Reviews";
@@ -17,6 +19,7 @@ import MobileActionBar from "@/components/site/MobileActionBar";
 export default function Home() {
   return (
     <SmoothScroll>
+      <ScrollProgress />
       <div id="top" className="relative flex min-h-screen flex-col bg-[var(--brand-cream)]">
         <Header />
         <main className="flex-1">
@@ -25,6 +28,7 @@ export default function Home() {
           <Specialist />
           <Facilities />
           <Services />
+          <CinematicPin />
           <WhyChoose />
           <Team />
           <Reviews />

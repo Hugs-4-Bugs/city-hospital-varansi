@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { whyChoose } from "@/lib/data";
+import { SplitText } from "./Motion";
 
 export default function WhyChoose() {
   return (
@@ -26,22 +27,19 @@ export default function WhyChoose() {
             Why patients choose us
           </motion.div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="text-balance font-[var(--font-fraunces)] text-3xl font-light leading-[1.08] sm:text-4xl lg:text-5xl"
-          >
-            The strengths patients{" "}
-            <span className="gradient-text-gold">keep mentioning.</span>
-          </motion.h2>
+          <h2 className="text-balance font-[var(--font-fraunces)] text-3xl font-light leading-[1.08] sm:text-4xl lg:text-5xl">
+            <SplitText text="The strengths" delay={0.05} />
+            <br />
+            <SplitText text="patients keep" delay={0.35} className="gradient-text-gold" />
+            <br />
+            <SplitText text="mentioning." delay={0.6} />
+          </h2>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.7, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="mt-5 max-w-md text-pretty text-base leading-relaxed text-[var(--brand-cream)]/70"
           >
             We lead with what the reviews genuinely support: attentive gynaecology
@@ -54,26 +52,36 @@ export default function WhyChoose() {
           {whyChoose.map((item, i) => (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: 40, rotateY: -8 }}
+              whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{
-                duration: 0.65,
+                duration: 0.7,
                 ease: [0.22, 1, 0.36, 1],
-                delay: i * 0.06,
+                delay: i * 0.08,
               }}
-              whileHover={{ x: 4 }}
+              whileHover={{ x: 6, scale: 1.01 }}
               className="group relative flex gap-5 rounded-2xl bg-white/[0.04] p-5 ring-1 ring-white/10 transition-colors duration-300 hover:bg-white/[0.07] sm:p-6"
               data-cursor="hover"
             >
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[var(--brand-gold)]/15 text-[var(--brand-gold-soft)] ring-1 ring-[var(--brand-gold)]/25">
+              <motion.div
+                whileHover={{ rotate: -10, scale: 1.15 }}
+                transition={{ type: "spring", stiffness: 300, damping: 14 }}
+                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[var(--brand-gold)]/15 text-[var(--brand-gold-soft)] ring-1 ring-[var(--brand-gold)]/25"
+              >
                 <item.icon className="h-6 w-6" />
-              </div>
+              </motion.div>
               <div className="min-w-0">
                 <div className="flex items-baseline gap-3">
-                  <span className="font-[var(--font-fraunces)] text-sm font-medium text-[var(--brand-gold-soft)]/60">
+                  <motion.span
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ type: "spring", stiffness: 300, damping: 18, delay: i * 0.08 + 0.3 }}
+                    className="font-[var(--font-fraunces)] text-sm font-medium text-[var(--brand-gold-soft)]/60"
+                  >
                     {String(i + 1).padStart(2, "0")}
-                  </span>
+                  </motion.span>
                   <h3 className="font-[var(--font-fraunces)] text-lg font-semibold text-[var(--brand-cream)] sm:text-xl">
                     {item.title}
                   </h3>
