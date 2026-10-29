@@ -44,34 +44,37 @@
 
 :root {
   --radius: 0.85rem;
-  /* Verdant Care palette */
-  --brand-teal: #0e6b66;
-  --brand-teal-deep: #0a4744;
-  --brand-teal-ink: #06231f;
+  /* Premium Medical palette — navy / teal / cyan */
+  --brand-navy: #12304A;
+  --brand-navy-deep: #0c1f33;
+  --brand-teal: #0D9488;
+  --brand-teal-deep: #0a6e67;
+  --brand-teal-ink: #0c1f33;
+  --brand-cyan: #DDF7F5;
   --brand-gold: #c9a24b;
   --brand-gold-soft: #e4cf9a;
   --brand-rose: #c98a86;
-  --brand-cream: #faf6ee;
-  --brand-mist: #eef3f1;
+  --brand-cream: #F6FAFC;
+  --brand-mist: #eef5f7;
 
-  --background: #faf6ee;
-  --foreground: #0a1f1d;
+  --background: #F6FAFC;
+  --foreground: #183247;
   --card: #ffffff;
-  --card-foreground: #0a1f1d;
+  --card-foreground: #183247;
   --popover: #ffffff;
-  --popover-foreground: #0a1f1d;
-  --primary: #0e6b66;
-  --primary-foreground: #faf6ee;
-  --secondary: #eef3f1;
-  --secondary-foreground: #0a4744;
-  --muted: #efe9da;
-  --muted-foreground: #5a6b67;
-  --accent: #c9a24b;
-  --accent-foreground: #1a1308;
+  --popover-foreground: #183247;
+  --primary: #0D9488;
+  --primary-foreground: #ffffff;
+  --secondary: #DDF7F5;
+  --secondary-foreground: #12304A;
+  --muted: #e8f0f4;
+  --muted-foreground: #5F7282;
+  --accent: #0D9488;
+  --accent-foreground: #ffffff;
   --destructive: #b42318;
-  --border: #e3dcca;
-  --input: #e3dcca;
-  --ring: #0e6b66;
+  --border: #d4e3ea;
+  --input: #d4e3ea;
+  --ring: #0D9488;
 }
 
 @layer base {
